@@ -1,0 +1,111 @@
+.about {
+  background: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  padding: 7rem 4rem;
+}
+
+.hidden { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.visible { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+
+.label {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.label::after {
+  content: '';
+  width: 40px;
+  height: 1.5px;
+  background: var(--green);
+}
+
+.title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+}
+
+.title em { font-style: italic; color: var(--purple); }
+
+.body {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--charcoal);
+  opacity: 0.82;
+  margin-bottom: 1.1rem;
+}
+
+.traits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.traitCard {
+  background: var(--white);
+  border-left: 3px solid var(--amber);
+  padding: 1.2rem;
+}
+
+.traitCard strong {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 0.35rem;
+}
+
+.traitCard span {
+  font-size: 0.88rem;
+  color: var(--charcoal);
+  opacity: 0.72;
+  line-height: 1.5;
+}
+
+.viz { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.statBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.statNum {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--navy);
+}
+
+.statLabel {
+  font-size: 1rem;
+  color: var(--charcoal);
+  opacity: 0.6;
+  max-width: 140px;
+  line-height: 1.4;
+}
+
+.divider {
+  height: 1px;
+  background: var(--light-gray);
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .about { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+  .traits { grid-template-columns: 1fr; }
+}

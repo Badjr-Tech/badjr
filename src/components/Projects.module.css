@@ -1,0 +1,134 @@
+.projects {
+  background: var(--cream);
+  padding: 7rem 4rem;
+}
+
+.hidden { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.visible { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+.head { margin-bottom: 4rem; }
+
+.label {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.label::after {
+  content: '';
+  width: 40px;
+  height: 1.5px;
+  background: var(--green);
+}
+
+.title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: var(--navy);
+  line-height: 1.1;
+}
+
+.title em { font-style: italic; color: var(--purple); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.cardHidden { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.cardVisible { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+.card {
+  background: var(--white);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(11, 45, 101, 0.12);
+}
+
+.ctaCard {
+  background: var(--navy);
+  border: 2px dashed rgba(255, 252, 240, 0.15);
+}
+
+.thumb {
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbIcon { font-size: 3.5rem; position: relative; z-index: 1; }
+
+.thumbStripes {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(255, 252, 240, 0.08) 8px,
+    rgba(255, 252, 240, 0.08) 9px
+  );
+}
+
+.ctaPlus {
+  font-size: 3rem;
+  color: rgba(255, 252, 240, 0.2);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0;
+}
+
+.body { padding: 1.8rem; }
+
+.tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+}
+
+.card p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--charcoal);
+  opacity: 0.72;
+  margin-bottom: 1.2rem;
+}
+
+.link {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: letter-spacing 0.2s;
+}
+
+.card:hover .link { letter-spacing: 0.16em; }
+
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) {
+  .projects { padding: 5rem 1.5rem; }
+  .grid { grid-template-columns: 1fr; }
+}

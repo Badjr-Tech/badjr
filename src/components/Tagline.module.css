@@ -1,0 +1,20 @@
+.wrap {
+  background: var(--green);
+  padding: 5rem 4rem;
+  text-align: center;
+}
+
+.hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.visible { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+
+.text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  line-height: 1.15;
+}
+
+.text span { color: var(--amber); }
+
+@media (max-width: 600px) { .wrap { padding: 4rem 1.5rem; } }
