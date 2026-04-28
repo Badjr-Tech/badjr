@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
-import logo3 from '/dist/assets/3.png';
-import djcPartner from '/dist/assets/djc-partner.png';
-import nreuvPartner from '/dist/assets/nreuv-partner.png';
+const logo3 = '/assets/3.png';
+const djcPartner = '/assets/djc-partner.png';
+const nreuvPartner = '/assets/nreuv-partner.png';
 
 const C = {
   bg:      "#fffcf0",
@@ -223,6 +223,7 @@ function Services() {
 }
 
 const PROJECTS = [
+  { tag: "Membership Community", title: "The Wren Club", body: "A selective membership community for women entrepreneurs, focused on actionable collaboration and business growth through a vetted network and shared resources." },
   { tag: "Conference Management", title: "PanelList",  body: "End-to-end conference management platform. Built to handle speaker submissions, scheduling, and attendee coordination — all in one focused, easy-to-use tool." },
   { tag: "Grant Collaboration",   title: "Merge",      body: "Platform for grant writers and collaborators to work together in real time. Streamlines the proposal process from drafting to submission." },
   { tag: "Coming Soon",           title: "Project 3",  body: "Something new is in the works. Stay tuned.", soon: true },
@@ -291,13 +292,32 @@ const TEAM = [
     name: "Dakotah Jennifer",
     role: "Co-Founder & CEO",
     bio: "Creative strategist and entrepreneur with a decade of experience in brand management, web design, and data-driven tech consulting. Founder of DakJen Creative LLC, and formerly Creative Director at Northern Real Estate Urban Ventures. Holds an MFA from Columbia University. Leads business operations, brand, and design at BaDjR — and drives ideation on new services and products.",
+    photo: "/assets/dakotahj-headshot[80].png",
   },
   {
     name: "Alexander Backfish",
     role: "Co-Founder",
     bio: "Co-founder of BaDjR. Full bio coming soon.",
+    photo: "/assets/alex-backfish.png",
   },
 ];
+
+function TeamMember({ f, i, mobile, avatarColor }) {
+  const [r,v] = useFade();
+  return (
+    <div ref={r} style={{ ...fade(v, i*80), display: "grid", gridTemplateColumns: mobile ? "1fr" : "200px 180px 1fr", alignItems: "start", gap: mobile ? "0.5rem" : "3rem", padding: mobile ? "1.75rem 0" : "2.25rem 0", borderBottom: `1px solid ${C.border}` }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+        <img src={f.photo} alt={f.name} style={{ width: 48, height: 48, borderRadius: "50%", objectFit: "cover", flexShrink: 0, background: avatarColor }} />
+        <div>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", fontWeight: 600, color: C.dark }}>{f.name}</p>
+          {mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, marginTop: "0.1rem" }}>{f.role}</p>}
+        </div>
+      </div>
+      {!mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: C.mid, paddingTop: "0.1rem" }}>{f.role}</p>}
+      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.75, color: C.mid, marginTop: mobile ? "0.5rem" : 0 }}>{f.bio}</p>
+    </div>
+  );
+}
 
 function Team() {
   const mobile = useMobile();
@@ -311,24 +331,7 @@ function Team() {
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>The founders</h2>
         </div>
         <Divider />
-        {TEAM.map((f,i) => {
-          const [r,v] = useFade();
-          return (
-            <div key={f.name} ref={r} style={{ ...fade(v, i*80), display: "grid", gridTemplateColumns: mobile ? "1fr" : "200px 180px 1fr", alignItems: "start", gap: mobile ? "0.5rem" : "3rem", padding: mobile ? "1.75rem 0" : "2.25rem 0", borderBottom: `1px solid ${C.border}` }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
-                <div style={{ width: 40, height: 40, background: avatarColors[i], flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ fontFamily: "'Caveat Brush', cursive", fontSize: "1rem", color: "rgba(255,255,255,0.65)" }}>{f.name.split(" ").map(n=>n[0]).join("")}</span>
-                </div>
-                <div>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", fontWeight: 600, color: C.dark }}>{f.name}</p>
-                  {mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, marginTop: "0.1rem" }}>{f.role}</p>}
-                </div>
-              </div>
-              {!mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: C.mid, paddingTop: "0.1rem" }}>{f.role}</p>}
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.75, color: C.mid, marginTop: mobile ? "0.5rem" : 0 }}>{f.bio}</p>
-            </div>
-          );
-        })}
+        {TEAM.map((f,i) => <TeamMember key={f.name} f={f} i={i} mobile={mobile} avatarColor={avatarColors[i]} />)}
       </div>
     </section>
   );
