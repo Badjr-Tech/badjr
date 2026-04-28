@@ -231,9 +231,9 @@ const SELECTED_PROJECTS = [
 ];
 
 const EXAMPLE_PROJECTS = [
-  { title: "Custom Invoicing & Bookkeeping", body: "Automated invoicing, expense tracking, and financial reporting tailored to your business workflow. No more spreadsheets or clunky off-the-shelf tools.", image: "/assets/examples/badjrpay.png" },
-  { title: "Client Portal", body: "A branded, secure space where your clients can track progress, share files, approve deliverables, and communicate with your team.", image: "/assets/examples/dd-portal.png" },
-  { title: "Course Platform", body: "End-to-end learning platform with enrollment, video hosting, progress tracking, and certificates — built to match your brand and pedagogy.", image: "/assets/examples/gucourses.png" },
+  { title: "Custom Invoicing & Bookkeeping", body: "Automated invoicing, expense tracking, and financial reporting tailored to your business workflow. No more spreadsheets or clunky off-the-shelf tools.", images: ["/assets/examples/badjrpay.png", "/assets/examples/badjrpay-categories.png", "/assets/examples/badjrpay-reports.png", "/assets/examples/badjrpay-books.png", "/assets/examples/badjrpay-categories2.png"] },
+  { title: "Client Portal", body: "A branded, secure space where your clients can track progress, share files, approve deliverables, and communicate with your team.", images: ["/assets/examples/ddportal.png", "/assets/examples/dd-portal.png", "/assets/examples/dd-portal2.png", "/assets/examples/dd=portal.png"] },
+  { title: "Course Platform", body: "End-to-end learning platform with enrollment, video hosting, progress tracking, and certificates — built to match your brand and pedagogy.", images: ["/assets/examples/gucourses.png", "/assets/examples/gucourses2.png", "/assets/examples/gucourses3.png", "/assets/examples/gucourses4.png", "/assets/examples/gucourses5.png"] },
 ];
 
 function ProjectRow({ p, i, mobile }) {
@@ -251,16 +251,63 @@ function ProjectRow({ p, i, mobile }) {
   );
 }
 
-function ExampleCard({ p, i, mobile }) {
-  const [r,v] = useFade();
+function Lightbox({ project, onClose }) {
+  const mobile = useMobile();
+  const [idx, setIdx] = useState(0);
+  const images = project.images;
+  useEffect(() => {
+    const h = (e) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") setIdx(i => (i + 1) % images.length);
+      if (e.key === "ArrowLeft") setIdx(i => (i - 1 + images.length) % images.length);
+    };
+    window.addEventListener("keydown", h);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", h); document.body.style.overflow = ""; };
+  }, [images.length, onClose]);
   return (
-    <div ref={r} style={{ ...fade(v, i*80), background: C.white, border: `1px solid ${C.border}`, borderRadius: "8px", overflow: "hidden" }}>
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 1000, background: "rgba(0,0,0,0.85)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: mobile ? "1rem" : "2rem" }}>
+      <div onClick={e => e.stopPropagation()} style={{ position: "relative", maxWidth: 1000, width: "100%", background: C.bg, borderRadius: "12px", overflow: "hidden" }}>
+        <button onClick={onClose} style={{ position: "absolute", top: "0.75rem", right: "0.75rem", zIndex: 10, background: "rgba(0,0,0,0.5)", border: "none", color: "#fff", width: 36, height: 36, borderRadius: "50%", cursor: "pointer", fontSize: "1.2rem", display: "flex", alignItems: "center", justifyContent: "center" }} aria-label="Close">&times;</button>
+        <div style={{ position: "relative", background: C.dark }}>
+          <img src={images[idx]} alt={`${project.title} screenshot ${idx + 1}`} style={{ width: "100%", maxHeight: mobile ? "50vh" : "70vh", objectFit: "contain", display: "block" }} />
+          {images.length > 1 && (
+            <>
+              <button onClick={() => setIdx(i => (i - 1 + images.length) % images.length)} style={{ position: "absolute", left: "0.75rem", top: "50%", transform: "translateY(-50%)", background: "rgba(0,0,0,0.5)", border: "none", color: "#fff", width: 40, height: 40, borderRadius: "50%", cursor: "pointer", fontSize: "1.2rem" }} aria-label="Previous">&#8249;</button>
+              <button onClick={() => setIdx(i => (i + 1) % images.length)} style={{ position: "absolute", right: "0.75rem", top: "50%", transform: "translateY(-50%)", background: "rgba(0,0,0,0.5)", border: "none", color: "#fff", width: 40, height: 40, borderRadius: "50%", cursor: "pointer", fontSize: "1.2rem" }} aria-label="Next">&#8250;</button>
+            </>
+          )}
+        </div>
+        <div style={{ padding: mobile ? "1.25rem" : "1.5rem 2rem" }}>
+          <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.4rem", fontWeight: 400, color: C.dark, marginBottom: "0.5rem" }}>{project.title}</h3>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", lineHeight: 1.7, color: C.mid, marginBottom: "1rem" }}>{project.body}</p>
+          {images.length > 1 && (
+            <div style={{ display: "flex", gap: "0.5rem", overflowX: "auto", paddingBottom: "0.5rem" }}>
+              {images.map((img, i) => (
+                <button key={i} onClick={() => setIdx(i)} style={{ flexShrink: 0, width: 72, height: 48, border: i === idx ? `2px solid ${C.green}` : `1px solid ${C.border}`, borderRadius: "4px", overflow: "hidden", cursor: "pointer", padding: 0, background: "none", opacity: i === idx ? 1 : 0.6, transition: "opacity 0.2s, border-color 0.2s" }}>
+                  <img src={img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ExampleCard({ p, i, mobile, onOpen }) {
+  const [r,v] = useFade();
+  const [hov,setHov] = useState(false);
+  return (
+    <div ref={r} onClick={() => onOpen(p)} style={{ ...fade(v, i*80), background: C.white, border: `1px solid ${C.border}`, borderRadius: "8px", overflow: "hidden", cursor: "pointer", transition: "transform 0.25s, box-shadow 0.25s, opacity 0.6s ease", transform: hov ? "translateY(-4px)" : "translateY(0)", boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.08)" : "0 1px 3px rgba(0,0,0,0.04)" }} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
       <div style={{ height: mobile ? 160 : 200, overflow: "hidden", background: C.bgAlt }}>
-        <img src={p.image} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left" }} />
+        <img src={p.images[0]} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left", transition: "transform 0.4s", transform: hov ? "scale(1.03)" : "scale(1)" }} />
       </div>
       <div style={{ padding: mobile ? "1.25rem" : "1.5rem" }}>
         <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: C.dark, marginBottom: "0.5rem" }}>{p.title}</h3>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.mid }}>{p.body}</p>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.mid, marginBottom: "0.75rem" }}>{p.body}</p>
+        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", fontWeight: 500, color: hov ? C.green : C.mid, transition: "color 0.2s" }}>View {p.images.length} screenshots →</span>
       </div>
     </div>
   );
@@ -271,6 +318,7 @@ function Projects() {
   const [hr,hv] = useFade();
   const [er,ev] = useFade();
   const [cr,cv] = useFade();
+  const [lightboxProject, setLightboxProject] = useState(null);
   return (
     <section id="projects" style={{ background: C.bg, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -289,7 +337,7 @@ function Projects() {
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.7, color: C.mid, marginTop: "0.75rem", maxWidth: 560 }}>Custom software tailored to your workflow. Here's a taste of what's possible.</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "repeat(3, 1fr)", gap: "1.5rem" }}>
-          {EXAMPLE_PROJECTS.map((p,i) => <ExampleCard key={p.title} p={p} i={i} mobile={mobile} />)}
+          {EXAMPLE_PROJECTS.map((p,i) => <ExampleCard key={p.title} p={p} i={i} mobile={mobile} onOpen={setLightboxProject} />)}
         </div>
 
         <div ref={cr} style={{ ...fade(cv), marginTop: "3rem", paddingTop: "2.5rem", borderTop: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
@@ -297,6 +345,7 @@ function Projects() {
           <Link to="/start" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 500, textDecoration: "none", padding: "0.6rem 1.3rem", background: C.green, color: C.white }}>Let's talk →</Link>
         </div>
       </div>
+      {lightboxProject && <Lightbox project={lightboxProject} onClose={() => setLightboxProject(null)} />}
     </section>
   );
 }
