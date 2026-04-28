@@ -454,15 +454,31 @@ function Home() {
 
 const SVC_OPTS = ["Web Design & Development","Digital Tool / SaaS","Custom Solution","Brand & UX Design","API & Integration","Consulting","Something else"];
 
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycby6tLFA32ZV6S7iEgxAGiMGRiJjmPslTLbMGg-4vNOUep5xqZA1WrnxIbJ5GGR6JuMSPA/exec";
+
 function StartProjectPage() {
   const mobile = useMobile();
   const [done, setDone] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
-    name: "", email: "", phone: "", company: "", 
+    name: "", email: "", phone: "", company: "",
     service: "", budget: "", timeline: "", message: ""
   });
 
   const ch = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      await fetch(SHEETS_URL, {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+    } catch (_) {}
+    setSubmitting(false);
+    setDone(true);
+  };
 
   const inputStyle = { fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", color: C.dark, background: C.white, border: `1px solid ${C.border}`, padding: "0.8rem 1rem", outline: "none", width: "100%", borderRadius: "4px", transition: "border-color 0.15s, box-shadow 0.15s", WebkitAppearance: "none" };
   const labelStyle = { fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: C.dark, display: "block", marginBottom: "0.5rem" };
@@ -490,7 +506,7 @@ function StartProjectPage() {
             <Link to="/" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "0.95rem", textDecoration: "none", padding: "0.8rem 1.8rem", background: C.dark, color: C.white, borderRadius: "4px" }}>Return home</Link>
           </div>
         ) : (
-          <form onSubmit={e => { e.preventDefault(); setDone(true); }} style={{ display: "flex", flexDirection: "column", gap: "1.5rem", background: C.white, padding: mobile ? "2rem 1.5rem" : "3rem", border: `1px solid ${C.border}`, borderRadius: "8px" }}>
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem", background: C.white, padding: mobile ? "2rem 1.5rem" : "3rem", border: `1px solid ${C.border}`, borderRadius: "8px" }}>
             
             <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: "1.5rem" }}>
               <div>
@@ -551,8 +567,8 @@ function StartProjectPage() {
               <textarea name="message" placeholder="Describe the problem you're trying to solve or the product you want to build. What are the key features and goals?" value={form.message} onChange={ch} required style={{...inputStyle, minHeight: 160, resize: "vertical"}} onFocus={e=>e.target.style.borderColor=C.green} onBlur={e=>e.target.style.borderColor=C.border} />
             </div>
 
-            <button type="submit" style={{ background: C.dark, color: C.white, border: "none", padding: "1rem 2rem", fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 500, cursor: "pointer", alignSelf: "flex-start", borderRadius: "4px", transition: "background 0.2s" }} onMouseEnter={e=>e.target.style.background=C.green} onMouseLeave={e=>e.target.style.background=C.dark}>
-              Submit Project Request
+            <button type="submit" disabled={submitting} style={{ background: submitting ? C.mid : C.dark, color: C.white, border: "none", padding: "1rem 2rem", fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 500, cursor: submitting ? "default" : "pointer", alignSelf: "flex-start", borderRadius: "4px", transition: "background 0.2s", opacity: submitting ? 0.7 : 1 }} onMouseEnter={e=>{ if(!submitting) e.target.style.background=C.green }} onMouseLeave={e=>{ if(!submitting) e.target.style.background=C.dark }}>
+              {submitting ? "Submitting..." : "Submit Project Request"}
             </button>
           </form>
         )}
