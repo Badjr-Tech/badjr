@@ -231,9 +231,9 @@ const SELECTED_PROJECTS = [
 ];
 
 const EXAMPLE_PROJECTS = [
-  { title: "Custom Invoicing & Bookkeeping", body: "Automated invoicing, expense tracking, and financial reporting tailored to your business workflow. No more spreadsheets or clunky off-the-shelf tools.", icon: "📄" },
-  { title: "Client Portal", body: "A branded, secure space where your clients can track progress, share files, approve deliverables, and communicate with your team.", icon: "🔐" },
-  { title: "Course Platform", body: "End-to-end learning platform with enrollment, video hosting, progress tracking, and certificates — built to match your brand and pedagogy.", icon: "🎓" },
+  { title: "Custom Invoicing & Bookkeeping", body: "Automated invoicing, expense tracking, and financial reporting tailored to your business workflow. No more spreadsheets or clunky off-the-shelf tools.", image: "/assets/examples/badjrpay.png" },
+  { title: "Client Portal", body: "A branded, secure space where your clients can track progress, share files, approve deliverables, and communicate with your team.", image: "/assets/examples/dd-portal.png" },
+  { title: "Course Platform", body: "End-to-end learning platform with enrollment, video hosting, progress tracking, and certificates — built to match your brand and pedagogy.", image: "/assets/examples/gucourses.png" },
 ];
 
 function ProjectCard({ p, i, mobile }) {
@@ -257,10 +257,14 @@ function ProjectCard({ p, i, mobile }) {
 function ExampleCard({ p, i, mobile }) {
   const [r,v] = useFade();
   return (
-    <div ref={r} style={{ ...fade(v, i*80), background: C.white, border: `1px solid ${C.border}`, borderRadius: "8px", padding: mobile ? "1.5rem" : "2rem" }}>
-      <span style={{ fontSize: "1.8rem", display: "block", marginBottom: "1rem" }}>{p.icon}</span>
-      <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: C.dark, marginBottom: "0.5rem" }}>{p.title}</h3>
-      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.mid }}>{p.body}</p>
+    <div ref={r} style={{ ...fade(v, i*80), background: C.white, border: `1px solid ${C.border}`, borderRadius: "8px", overflow: "hidden" }}>
+      <div style={{ height: mobile ? 160 : 200, overflow: "hidden", background: C.bgAlt }}>
+        <img src={p.image} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top left" }} />
+      </div>
+      <div style={{ padding: mobile ? "1.25rem" : "1.5rem" }}>
+        <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: C.dark, marginBottom: "0.5rem" }}>{p.title}</h3>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.mid }}>{p.body}</p>
+      </div>
     </div>
   );
 }
