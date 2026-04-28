@@ -222,25 +222,45 @@ function Services() {
   );
 }
 
-const PROJECTS = [
-  { tag: "Membership Community", title: "The Wren Club", body: "A selective membership community for women entrepreneurs, focused on actionable collaboration and business growth through a vetted network and shared resources." },
-  { tag: "Conference Management", title: "PanelList",  body: "End-to-end conference management platform. Built to handle speaker submissions, scheduling, and attendee coordination — all in one focused, easy-to-use tool." },
-  { tag: "Grant Collaboration",   title: "Merge",      body: "Platform for grant writers and collaborators to work together in real time. Streamlines the proposal process from drafting to submission." },
-  { tag: "Coming Soon",           title: "Project 3",  body: "Something new is in the works. Stay tuned.", soon: true },
-  { tag: "Coming Soon",           title: "Project 4",  body: "Another project on the way. We'll share more when we're ready.", soon: true },
+const SELECTED_PROJECTS = [
+  { tag: "Membership Community", title: "The Wren Club", body: "An exclusive membership community for women entrepreneurs with established businesses. Virtual meetups, in-person events, and a vetted network built for real collaboration — not just connections.", url: "https://www.thewrenclub.com/", color: "#6b4c3b" },
+  { tag: "Conference Management", title: "PanelList", body: "End-to-end conference management platform. Speaker submissions, scheduling, and attendee coordination — all in one focused, easy-to-use tool.", url: "/start", color: "#2d4a6f" },
+  { tag: "FF&E Procurement", title: "Design Domain", body: "Full-service furniture procurement and design for real estate projects. Sourcing through installation, with 20–40% savings over traditional FF&E firms.", url: "https://www.designdomainllc.com/", color: "#4a3d6b" },
+  { tag: "Benefits Platform", title: "Perk", body: "A modern benefits management platform that helps organizations provide meaningful perks to every team — simple to set up, easy to use.", url: "https://perkapp.vercel.app/", color: "#2e6b5a" },
+  { tag: "Project Planning", title: "Dules", body: "Project planning and Gantt chart tool built for clarity. Visualize timelines, coordinate tasks, and keep your team aligned — without the bloat.", url: "https://dules.vercel.app/", color: "#5a6350" },
 ];
 
-function ProjectRow({ p, i, mobile }) {
+const EXAMPLE_PROJECTS = [
+  { title: "Custom Invoicing & Bookkeeping", body: "Automated invoicing, expense tracking, and financial reporting tailored to your business workflow. No more spreadsheets or clunky off-the-shelf tools.", icon: "📄" },
+  { title: "Client Portal", body: "A branded, secure space where your clients can track progress, share files, approve deliverables, and communicate with your team.", icon: "🔐" },
+  { title: "Course Platform", body: "End-to-end learning platform with enrollment, video hosting, progress tracking, and certificates — built to match your brand and pedagogy.", icon: "🎓" },
+];
+
+function ProjectCard({ p, i, mobile }) {
   const [r,v] = useFade();
   const [hov,setHov] = useState(false);
-  const dimmed = p.soon;
   return (
-    <div ref={r} style={{ ...fade(v, i*50), display: "grid", gridTemplateColumns: mobile ? "1fr" : "160px 1fr 1fr auto", alignItems: mobile ? "start" : "center", gap: mobile ? "0.3rem" : "2.5rem", borderBottom: `1px solid ${C.border}`, background: !mobile && hov && !dimmed ? C.bgAlt : "transparent", transition: "background 0.2s, opacity 0.6s ease, transform 0.6s ease", cursor: "default", margin: mobile ? "0" : "0 -2.5rem", padding: mobile ? "1.5rem 0" : "1.5rem 2.5rem", opacity: dimmed ? 0.45 : 1 }} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
-      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", color: dimmed ? C.border : C.green, fontWeight: 600 }}>{p.tag}</span>
-      <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "1.1rem" : "1.2rem", fontWeight: 400, color: C.dark, marginTop: mobile ? "0.15rem" : 0, fontStyle: dimmed ? "italic" : "normal" }}>{p.title}</h3>
-      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.65, color: C.mid, marginTop: mobile ? "0.25rem" : 0 }}>{p.body}</p>
-      {!mobile && !dimmed && <Link to="/start" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 500, color: hov ? C.green : C.border, textDecoration: "none", whiteSpace: "nowrap", transition: "color 0.2s" }}>View →</Link>}
-      {!mobile && dimmed && <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.border, whiteSpace: "nowrap" }}>Soon</span>}
+    <a ref={r} href={p.url} target={p.url.startsWith("http") ? "_blank" : undefined} rel={p.url.startsWith("http") ? "noopener noreferrer" : undefined} style={{ ...fade(v, i*80), textDecoration: "none", display: "block", background: C.white, border: `1px solid ${C.border}`, borderRadius: "8px", overflow: "hidden", transition: "transform 0.25s, box-shadow 0.25s, opacity 0.6s ease", transform: hov ? "translateY(-4px)" : "translateY(0)", boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.08)" : "0 1px 3px rgba(0,0,0,0.04)" }} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
+      <div style={{ height: mobile ? 160 : 200, background: p.color, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+        <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "1.8rem" : "2.2rem", color: "rgba(255,255,255,0.25)", letterSpacing: "-0.02em" }}>{p.title}</span>
+        <span style={{ position: "absolute", top: "0.75rem", left: "0.75rem", fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, color: "rgba(255,255,255,0.7)", background: "rgba(255,255,255,0.15)", padding: "0.25rem 0.6rem", borderRadius: "4px" }}>{p.tag}</span>
+      </div>
+      <div style={{ padding: mobile ? "1.25rem" : "1.5rem" }}>
+        <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.2rem", fontWeight: 400, color: C.dark, marginBottom: "0.5rem" }}>{p.title}</h3>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.mid, marginBottom: "1rem" }}>{p.body}</p>
+        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", fontWeight: 500, color: hov ? C.green : C.mid, transition: "color 0.2s" }}>View project →</span>
+      </div>
+    </a>
+  );
+}
+
+function ExampleCard({ p, i, mobile }) {
+  const [r,v] = useFade();
+  return (
+    <div ref={r} style={{ ...fade(v, i*80), background: C.white, border: `1px solid ${C.border}`, borderRadius: "8px", padding: mobile ? "1.5rem" : "2rem" }}>
+      <span style={{ fontSize: "1.8rem", display: "block", marginBottom: "1rem" }}>{p.icon}</span>
+      <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: C.dark, marginBottom: "0.5rem" }}>{p.title}</h3>
+      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.mid }}>{p.body}</p>
     </div>
   );
 }
@@ -248,6 +268,7 @@ function ProjectRow({ p, i, mobile }) {
 function Projects() {
   const mobile = useMobile();
   const [hr,hv] = useFade();
+  const [er,ev] = useFade();
   const [cr,cv] = useFade();
   return (
     <section id="projects" style={{ background: C.bg, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
@@ -255,10 +276,22 @@ function Projects() {
         <div ref={hr} style={{ ...fade(hv), marginBottom: "2.5rem" }}>
           <Label>Work</Label>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>Selected projects</h2>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.7, color: C.mid, marginTop: "0.75rem", maxWidth: 560 }}>Real products we've designed and built for real clients.</p>
         </div>
-        <Divider />
-        {PROJECTS.map((p,i) => <ProjectRow key={p.title} p={p} i={i} mobile={mobile} />)}
-        <div ref={cr} style={{ ...fade(cv), marginTop: "2.5rem", paddingTop: "2.5rem", borderTop: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fill, minmax(320px, 1fr))", gap: "1.5rem", marginBottom: "4rem" }}>
+          {SELECTED_PROJECTS.map((p,i) => <ProjectCard key={p.title} p={p} i={i} mobile={mobile} />)}
+        </div>
+
+        <div ref={er} style={{ ...fade(ev), marginBottom: "2.5rem" }}>
+          <Label>What we can build</Label>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.4rem, 2.5vw, 2rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>Example solutions</h2>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.7, color: C.mid, marginTop: "0.75rem", maxWidth: 560 }}>Custom software tailored to your workflow. Here's a taste of what's possible.</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "repeat(3, 1fr)", gap: "1.5rem" }}>
+          {EXAMPLE_PROJECTS.map((p,i) => <ExampleCard key={p.title} p={p} i={i} mobile={mobile} />)}
+        </div>
+
+        <div ref={cr} style={{ ...fade(cv), marginTop: "3rem", paddingTop: "2.5rem", borderTop: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", color: C.mid }}>Have a project in mind?</p>
           <Link to="/start" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 500, textDecoration: "none", padding: "0.6rem 1.3rem", background: C.green, color: C.white }}>Let's talk →</Link>
         </div>
@@ -307,7 +340,7 @@ function TeamMember({ f, i, mobile, avatarColor }) {
   return (
     <div ref={r} style={{ ...fade(v, i*80), display: "grid", gridTemplateColumns: mobile ? "1fr" : "200px 180px 1fr", alignItems: "start", gap: mobile ? "0.5rem" : "3rem", padding: mobile ? "1.75rem 0" : "2.25rem 0", borderBottom: `1px solid ${C.border}` }}>
       <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
-        <img src={f.photo} alt={f.name} style={{ width: 48, height: 48, borderRadius: "50%", objectFit: "cover", flexShrink: 0, background: avatarColor }} />
+        <img src={f.photo} alt={f.name} style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover", flexShrink: 0, background: avatarColor }} />
         <div>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", fontWeight: 600, color: C.dark }}>{f.name}</p>
           {mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, marginTop: "0.1rem" }}>{f.role}</p>}
