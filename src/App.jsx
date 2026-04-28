@@ -223,11 +223,11 @@ function Services() {
 }
 
 const SELECTED_PROJECTS = [
-  { tag: "Membership Community", title: "The Wren Club", body: "An exclusive membership community for women entrepreneurs with established businesses. Virtual meetups, in-person events, and a vetted network built for real collaboration — not just connections.", url: "https://www.thewrenclub.com/", color: "#6b4c3b" },
-  { tag: "Conference Management", title: "PanelList", body: "End-to-end conference management platform. Speaker submissions, scheduling, and attendee coordination — all in one focused, easy-to-use tool.", url: "/start", color: "#2d4a6f" },
-  { tag: "FF&E Procurement", title: "Design Domain", body: "Full-service furniture procurement and design for real estate projects. Sourcing through installation, with 20–40% savings over traditional FF&E firms.", url: "https://www.designdomainllc.com/", color: "#4a3d6b" },
-  { tag: "Benefits Platform", title: "Perk", body: "A modern benefits management platform that helps organizations provide meaningful perks to every team — simple to set up, easy to use.", url: "https://perkapp.vercel.app/", color: "#2e6b5a" },
-  { tag: "Project Planning", title: "Dules", body: "Project planning and Gantt chart tool built for clarity. Visualize timelines, coordinate tasks, and keep your team aligned — without the bloat.", url: "https://dules.vercel.app/", color: "#5a6350" },
+  { tag: "Membership Community", title: "The Wren Club", body: "An exclusive membership community for women entrepreneurs with established businesses. Virtual meetups, in-person events, and a vetted network built for real collaboration — not just connections.", url: "https://www.thewrenclub.com/" },
+  { tag: "Conference Management", title: "PanelList", body: "End-to-end conference management platform. Speaker submissions, scheduling, and attendee coordination — all in one focused, easy-to-use tool.", url: "/start" },
+  { tag: "FF&E Procurement", title: "Design Domain", body: "Full-service furniture procurement and design for real estate projects. Sourcing through installation, with 20–40% savings over traditional FF&E firms.", url: "https://www.designdomainllc.com/" },
+  { tag: "Benefits Platform", title: "Perk", body: "A modern benefits management platform that helps organizations provide meaningful perks to every team — simple to set up, easy to use.", url: "https://perkapp.vercel.app/" },
+  { tag: "Project Planning", title: "Dules", body: "Project planning and Gantt chart tool built for clarity. Visualize timelines, coordinate tasks, and keep your team aligned — without the bloat.", url: "https://dules.vercel.app/" },
 ];
 
 const EXAMPLE_PROJECTS = [
@@ -236,20 +236,17 @@ const EXAMPLE_PROJECTS = [
   { title: "Course Platform", body: "End-to-end learning platform with enrollment, video hosting, progress tracking, and certificates — built to match your brand and pedagogy.", image: "/assets/examples/gucourses.png" },
 ];
 
-function ProjectCard({ p, i, mobile }) {
+function ProjectRow({ p, i, mobile }) {
   const [r,v] = useFade();
   const [hov,setHov] = useState(false);
   return (
-    <a ref={r} href={p.url} target={p.url.startsWith("http") ? "_blank" : undefined} rel={p.url.startsWith("http") ? "noopener noreferrer" : undefined} style={{ ...fade(v, i*80), textDecoration: "none", display: "block", background: C.white, border: `1px solid ${C.border}`, borderRadius: "8px", overflow: "hidden", transition: "transform 0.25s, box-shadow 0.25s, opacity 0.6s ease", transform: hov ? "translateY(-4px)" : "translateY(0)", boxShadow: hov ? "0 8px 24px rgba(0,0,0,0.08)" : "0 1px 3px rgba(0,0,0,0.04)" }} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
-      <div style={{ height: mobile ? 160 : 200, background: p.color, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-        <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "1.8rem" : "2.2rem", color: "rgba(255,255,255,0.25)", letterSpacing: "-0.02em" }}>{p.title}</span>
-        <span style={{ position: "absolute", top: "0.75rem", left: "0.75rem", fontFamily: "'DM Sans', sans-serif", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, color: "rgba(255,255,255,0.7)", background: "rgba(255,255,255,0.15)", padding: "0.25rem 0.6rem", borderRadius: "4px" }}>{p.tag}</span>
+    <a ref={r} href={p.url} target={p.url.startsWith("http") ? "_blank" : undefined} rel={p.url.startsWith("http") ? "noopener noreferrer" : undefined} style={{ ...fade(v, i*50), textDecoration: "none", display: "grid", gridTemplateColumns: mobile ? "1fr" : "160px 1fr auto", alignItems: mobile ? "start" : "center", gap: mobile ? "0.3rem" : "2.5rem", borderBottom: `1px solid ${C.border}`, background: hov ? C.bgAlt : "transparent", transition: "background 0.2s, opacity 0.6s ease, transform 0.6s ease", cursor: "pointer", margin: mobile ? "0" : "0 -2.5rem", padding: mobile ? "1.5rem 0" : "1.5rem 2.5rem" }} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
+      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", color: C.green, fontWeight: 600 }}>{p.tag}</span>
+      <div>
+        <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "1.1rem" : "1.2rem", fontWeight: 400, color: C.dark }}>{p.title}</h3>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.65, color: C.mid, marginTop: "0.3rem" }}>{p.body}</p>
       </div>
-      <div style={{ padding: mobile ? "1.25rem" : "1.5rem" }}>
-        <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.2rem", fontWeight: 400, color: C.dark, marginBottom: "0.5rem" }}>{p.title}</h3>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.mid, marginBottom: "1rem" }}>{p.body}</p>
-        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", fontWeight: 500, color: hov ? C.green : C.mid, transition: "color 0.2s" }}>View project →</span>
-      </div>
+      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 500, color: hov ? C.green : C.border, textDecoration: "none", whiteSpace: "nowrap", transition: "color 0.2s" }}>Visit →</span>
     </a>
   );
 }
@@ -282,9 +279,9 @@ function Projects() {
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>Selected projects</h2>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.7, color: C.mid, marginTop: "0.75rem", maxWidth: 560 }}>Real products we've designed and built for real clients.</p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fill, minmax(320px, 1fr))", gap: "1.5rem", marginBottom: "4rem" }}>
-          {SELECTED_PROJECTS.map((p,i) => <ProjectCard key={p.title} p={p} i={i} mobile={mobile} />)}
-        </div>
+        <Divider />
+        {SELECTED_PROJECTS.map((p,i) => <ProjectRow key={p.title} p={p} i={i} mobile={mobile} />)}
+        <div style={{ marginBottom: "4rem" }} />
 
         <div ref={er} style={{ ...fade(ev), marginBottom: "2.5rem" }}>
           <Label>What we can build</Label>
