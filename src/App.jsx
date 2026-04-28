@@ -454,7 +454,7 @@ function Home() {
 
 const SVC_OPTS = ["Web Design & Development","Digital Tool / SaaS","Custom Solution","Brand & UX Design","API & Integration","Consulting","Something else"];
 
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxL0hO3ryuNpJsQg_VTkztUYWOHTht9zsrsINjU_cb2Am3A-YvK5FRqdquxJcZgv3Rc2Q/exec";
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxQ3L2eT7onFkH9GDRkSQP5lB4G3WyMyyoRTSMCru4sWI-bML0uHz6FM6xFQXYbptW5dw/exec";
 
 function StartProjectPage() {
   const mobile = useMobile();
