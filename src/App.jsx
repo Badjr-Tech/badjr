@@ -171,7 +171,7 @@ function About() {
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.8, color: C.mid }}>Like our namesake — the badger — we dig beneath the surface. We're not interested in fast, generic work. We want to build things that last.</p>
         </div>
         <div ref={r2} style={fade(v2, mobile ? 0 : 120)}>
-          {[{n:"12+",l:"Projects delivered"},{n:"2",l:"Expert founders"},{n:"100%",l:"Custom, every time"}].map(s => (
+          {[{n:"5+",l:"Projects delivered"},{n:"2",l:"Expert founders"},{n:"100%",l:"Custom, innovative & well-designed"}].map(s => (
             <div key={s.n} style={{ padding: "1.5rem 0", borderTop: `1px solid ${C.border}`, display: "flex", alignItems: "baseline", gap: "1.25rem" }}>
               <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: "2.8rem", color: C.green, lineHeight: 1 }}>{s.n}</span>
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", color: C.mid }}>{s.l}</span>
