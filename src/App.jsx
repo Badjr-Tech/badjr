@@ -307,7 +307,7 @@ function ExampleCard({ p, i, mobile, onOpen }) {
       <div style={{ padding: mobile ? "1.25rem" : "1.5rem" }}>
         <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: C.dark, marginBottom: "0.5rem" }}>{p.title}</h3>
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.7, color: C.mid, marginBottom: "0.75rem" }}>{p.body}</p>
-        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", fontWeight: 500, color: hov ? C.green : C.mid, transition: "color 0.2s" }}>View {p.images.length} screenshots →</span>
+        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", fontWeight: 500, color: hov ? C.green : C.mid, transition: "color 0.2s" }}>Explore →</span>
       </div>
     </div>
   );
