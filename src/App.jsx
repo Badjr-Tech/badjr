@@ -126,7 +126,7 @@ function Hero() {
           <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: C.mid, letterSpacing: "0.06em" }}>Tech products &amp; custom solutions</span>
         </div>
         <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "2.6rem" : "clamp(2.8rem, 6vw, 5.2rem)", fontWeight: 400, color: C.dark, lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
-          Tech Solutions Made Easy.<br /><span style={{ color: C.green }}>Get it Done. Badjr.</span>
+          Get it Done. Badjr.<br /><span style={{ color: C.green }}>Tech Solutions Made Easy.</span>
         </h1>
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? "1rem" : "1.1rem", lineHeight: 1.75, color: C.mid, maxWidth: 520, marginBottom: "2.25rem" }}>
           BaDjR designs and builds websites, tools, and custom software for companies that care about quality. Engineering precision, creative instinct.
