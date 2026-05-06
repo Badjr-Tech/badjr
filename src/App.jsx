@@ -379,8 +379,8 @@ const TEAM = [
   },
   {
     name: "Alexander Backfish",
-    role: "Co-Founder",
-    bio: "Co-founder of BaDjR. Full bio coming soon.",
+    role: "Co-Founder & CTO",
+    bio: "Alexander Backfish is a full-stack software engineer with a track record of building production-grade platforms from the ground up. He brings hands-on expertise across Angular, React, Next.js, Java Spring Boot, NestJS, and PostgreSQL — with a strong command of serverless architecture and AWS cloud deployment. At BaDjR, Alex leads full-stack development, turning complex product visions into clean, scalable systems. He's the kind of engineer who takes ownership — from architecture decisions to deployment pipelines — and thrives in environments where the work actually matters. Beyond BaDjR, Alex is the founder of Sword in Stone, a SaaS company he built entirely solo — designing, developing, testing, and shipping the full platform himself. That kind of end-to-end accountability is rare, and it shows in how he approaches every build. He holds a B.S. in Computer Science from Colorado State University Global and got his start in engineering at Purdue. He's based in Clayton, North Carolina.",
     photo: "/assets/alex-backfish.png",
   },
 ];
