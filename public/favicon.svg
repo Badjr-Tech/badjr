@@ -4,8 +4,9 @@
         text-anchor="middle"
         dominant-baseline="central"
         font-family="'DM Serif Display', 'Playfair Display', Georgia, serif"
-        font-size="34"
         font-weight="400"
         fill="#fffcf0"
-        font-style="italic">BD</text>
+        font-style="italic">
+    <tspan font-size="34">BD</tspan><tspan font-size="18" dy="2">r</tspan>
+  </text>
 </svg>
