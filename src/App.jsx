@@ -228,6 +228,7 @@ const SELECTED_PROJECTS = [
   { tag: "FF&E Procurement", title: "Design Domain", body: "Full-service furniture procurement and design for real estate projects. Sourcing through installation, with 20–40% savings over traditional FF&E firms.", url: "https://www.designdomainllc.com/" },
   { tag: "Benefits Platform", title: "Perk", body: "A modern benefits management platform that helps organizations provide meaningful perks to every team — simple to set up, easy to use.", url: "https://perkapp.vercel.app/" },
   { tag: "Project Planning", title: "Dules", body: "Project planning and Gantt chart tool built for clarity. Visualize timelines, coordinate tasks, and keep your team aligned — without the bloat.", url: "https://dules.vercel.app/" },
+  { tag: "Creative Studio", title: "DJC Studio", body: "A branded studio site for DakJen Creative — showcasing services, the team, and the creative approach behind the work. Clean, expressive, and built to convert.", url: "https://djc-studio.vercel.app/the-studio" },
 ];
 
 const EXAMPLE_PROJECTS = [
