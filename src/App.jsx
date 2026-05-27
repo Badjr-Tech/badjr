@@ -90,7 +90,7 @@ function Nav() {
         <Link to="/#top" style={{ textDecoration: "none" }} onClick={go}><Logo size={208} /></Link>
         {!mobile && (
           <ul style={{ listStyle: "none", display: "flex", alignItems: "center", gap: "2rem", fontFamily: "'DM Sans', sans-serif" }}>
-            {["About","Services","Projects","Partners","Team"].map(l => (
+            {["About","Services","Projects","Partners","Team","Contact"].map(l => (
               <li key={l}><Link to={`/#${l.toLowerCase()}`} style={{ fontSize: "0.82rem", color: C.mid, textDecoration: "none", fontWeight: 400 }} onMouseEnter={e=>e.target.style.color=C.dark} onMouseLeave={e=>e.target.style.color=C.mid}>{l}</Link></li>
             ))}
             <li><Link to="/start" style={{ fontSize: "0.82rem", fontWeight: 500, textDecoration: "none", padding: "0.45rem 1.1rem", background: C.green, color: C.white, fontFamily: "'DM Sans', sans-serif" }} onMouseEnter={e=>e.target.style.opacity="0.85"} onMouseLeave={e=>e.target.style.opacity="1"}>Start a project</Link></li>
@@ -106,7 +106,7 @@ function Nav() {
       </nav>
       {mobile && open && (
         <div style={{ position: "fixed", top: 60, left: 0, right: 0, zIndex: 199, background: C.bg, borderBottom: `1px solid ${C.border}`, padding: "1.5rem 1.25rem 2rem", display: "flex", flexDirection: "column" }}>
-          {["About","Services","Projects","Partners","Team"].map(l => (
+          {["About","Services","Projects","Partners","Team","Contact"].map(l => (
             <Link key={l} to={`/#${l.toLowerCase()}`} onClick={go} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: C.dark, textDecoration: "none", padding: "0.9rem 0", borderBottom: `1px solid ${C.border}` }}>{l}</Link>
           ))}
           <Link to="/start" onClick={go} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 600, textDecoration: "none", padding: "0.85rem 1.25rem", background: C.green, color: C.white, marginTop: "1.25rem", textAlign: "center" }}>Start a project</Link>
@@ -421,6 +421,60 @@ function Team() {
   );
 }
 
+const FOUNDER_EMAILS = [
+  { name: "Dakotah Jennifer", role: "Co-Founder & CEO", email: "dakotah@badjrtech.com" },
+  { name: "Alexander Backfish", role: "Co-Founder & CTO", email: "alexander@badjrtech.com" },
+];
+
+const DEPT_EMAILS = [
+  { label: "Business",  email: "business@badjrtech.com" },
+  { label: "PR",        email: "pr@badjrtech.com" },
+  { label: "Marketing", email: "marketing@badjrtech.com" },
+  { label: "Support",   email: "support@badjrtech.com" },
+  { label: "Finance",   email: "finance@badjrtech.com" },
+];
+
+function Contact() {
+  const mobile = useMobile();
+  const [hr,hv] = useFade();
+  const [lr,lv] = useFade();
+  const [rr,rv] = useFade();
+  const mailLink = { fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", color: C.green, textDecoration: "none", fontWeight: 500 };
+  return (
+    <section id="contact" style={{ background: C.bg, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div ref={hr} style={{ ...fade(hv), marginBottom: "2.5rem" }}>
+          <Label>Contact</Label>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>Get in touch</h2>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.7, color: C.mid, marginTop: "0.75rem", maxWidth: 560 }}>Reach a founder directly or use the right channel for what you need.</p>
+        </div>
+        <Divider />
+        <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: mobile ? "3rem" : "6rem", paddingTop: "3rem" }}>
+          <div ref={lr} style={fade(lv)}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 600, color: C.mid, marginBottom: "1.5rem" }}>Founders</p>
+            {FOUNDER_EMAILS.map(f => (
+              <div key={f.email} style={{ paddingBottom: "1.25rem", marginBottom: "1.25rem", borderBottom: `1px solid ${C.border}` }}>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: C.dark }}>{f.name}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", color: C.mid, marginBottom: "0.4rem" }}>{f.role}</p>
+                <a href={`mailto:${f.email}`} style={mailLink}>{f.email}</a>
+              </div>
+            ))}
+          </div>
+          <div ref={rr} style={fade(rv, mobile ? 0 : 120)}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 600, color: C.mid, marginBottom: "1.5rem" }}>Departments</p>
+            {DEPT_EMAILS.map(d => (
+              <div key={d.email} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.85rem 0", borderBottom: `1px solid ${C.border}`, gap: "1rem", flexWrap: "wrap" }}>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", fontWeight: 600, color: C.dark }}>{d.label}</span>
+                <a href={`mailto:${d.email}`} style={mailLink}>{d.email}</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   const mobile = useMobile();
   return (
@@ -430,7 +484,7 @@ function Footer() {
         <Logo size={22} />
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.border }}>© {new Date().getFullYear()} BaDjR Tech. All rights reserved.</p>
         <ul style={{ listStyle: "none", display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
-          {["About","Services","Projects","Partners","Team"].map(l => (
+          {["About","Services","Projects","Partners","Team","Contact"].map(l => (
             <li key={l}><Link to={`/#${l.toLowerCase()}`} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, textDecoration: "none" }}>{l}</Link></li>
           ))}
         </ul>
@@ -449,6 +503,7 @@ function Home() {
       <Projects />
       <Partners />
       <Team />
+      <Contact />
     </>
   );
 }
