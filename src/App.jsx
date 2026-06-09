@@ -475,6 +475,27 @@ function Contact() {
   );
 }
 
+function NotFound() {
+  const mobile = useMobile();
+  return (
+    <section style={{ background: C.bg, padding: mobile ? "120px 1.25rem 80px" : "160px 2.5rem 120px", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ maxWidth: 640, textAlign: "center" }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 600, color: C.green, marginBottom: "1.5rem" }}>404 — Page Not Found</p>
+        <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)", fontWeight: 400, color: C.dark, lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
+          You're in the <em style={{ color: C.green }}>wrong place</em>.
+        </h1>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.05rem", lineHeight: 1.7, color: C.mid, maxWidth: 480, margin: "0 auto 2.5rem" }}>
+          This page doesn't exist — at least not at BaDjR. Could be a typo, a stale link, or something we moved. Let's get you back on track.
+        </p>
+        <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
+          <Link to="/" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "0.88rem", textDecoration: "none", padding: "0.7rem 1.5rem", background: C.dark, color: C.white }}>Back to home</Link>
+          <Link to="/start" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, fontSize: "0.88rem", textDecoration: "none", padding: "0.7rem 1.5rem", border: `1px solid ${C.border}`, color: C.dark }}>Start a project →</Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   const mobile = useMobile();
   return (
@@ -654,6 +675,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/start" element={<StartProjectPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
