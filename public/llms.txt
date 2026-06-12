@@ -1,0 +1,48 @@
+# BaDjR Tech
+
+> BaDjR Tech is a small, founder-led software studio. We design and build custom websites, digital tools, SaaS platforms, and bespoke software solutions for companies that care about quality. Engineering precision meets creative instinct.
+
+## About
+
+BaDjR Tech was founded in 2024 by Dakotah Jennifer and Alexander Backfish. We take on a small number of projects at a time so every client gets our full attention — no hand-offs to junior staff, no bloated process. Like our namesake, the badger, we dig beneath the surface to build things that last.
+
+- Website: https://badjr.tech
+- Based in the United States
+- Founded: 2024
+
+## Founders
+
+- **Dakotah Jennifer** — Co-Founder & CEO. Creative strategist and entrepreneur with a decade of experience in brand management, web design, and data-driven tech consulting. Founder of DakJen Creative LLC and CCO at Northern Real Estate Urban Ventures. Holds an MFA from Columbia University and a BA in English Literature from Washington University in St. Louis. Email: dakotah@badjrtech.com
+- **Alexander Backfish** — Co-Founder & CTO. Full-stack software engineer with expertise across Angular, React, Next.js, Java Spring Boot, NestJS, PostgreSQL, serverless architecture, and AWS. Founder of Sword in Stone (SaaS). B.S. in Computer Science from Colorado State University Global. Based in Clayton, North Carolina. Email: alexander@badjrtech.com
+
+## Services
+
+- **Web Design & Development** — Custom websites built from scratch, fast, accessible, and crafted to convert. From marketing sites to complex web applications.
+- **Digital Tools & SaaS** — Software that solves real problems. Dashboards, automation platforms, and internal tools built to scale.
+- **Custom Tech Solutions** — Bespoke engineering for unusual workflow and product challenges.
+- **Brand & UX Design** — Visual identity and user experience that makes a product feel coherent, considered, and impossible to imitate.
+- **API & Integrations** — Connecting tools, automating workflows, and building the infrastructure that keeps a stack running smoothly.
+- **Strategy & Consulting** — Product definition, stack choice, and roadmap building for teams unsure where to start.
+
+## Selected Projects
+
+- [The Wren Club](https://www.thewrenclub.com/) — Membership community for women entrepreneurs.
+- PanelList — Conference management platform.
+- [Design Domain](https://www.designdomainllc.com/) — FF&E procurement and design for real estate projects.
+- [Perk](https://perkapp.vercel.app/) — Modern benefits management platform.
+- [Dules](https://dules.vercel.app/) — Project planning and Gantt chart tool.
+- [DJC Studio](https://djc-studio.vercel.app/the-studio) — Learning platform for small business owners.
+
+## Contact
+
+- Business inquiries: business@badjrtech.com
+- Press: pr@badjrtech.com
+- Marketing: marketing@badjrtech.com
+- Support: support@badjrtech.com
+- Finance: finance@badjrtech.com
+- Start a project: https://badjr.tech/start
+
+## Optional
+
+- [Start a Project](https://badjr.tech/start): Project intake form for new client engagements.
+- [Sitemap](https://badjr.tech/sitemap.xml)
