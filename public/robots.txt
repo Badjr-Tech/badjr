@@ -1,4 +1,25 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://badjr.tech/sitemap.xml
+# AI crawlers explicitly welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://badjrtech.com/sitemap.xml
+
+# Machine-readable site summary for LLMs: https://badjrtech.com/llms.txt
