@@ -90,7 +90,7 @@ function Nav() {
         <Link to="/#top" style={{ textDecoration: "none" }} onClick={go}><Logo size={208} /></Link>
         {!mobile && (
           <ul style={{ listStyle: "none", display: "flex", alignItems: "center", gap: "2rem", fontFamily: "'DM Sans', sans-serif" }}>
-            {["About","Services","Projects","Partners","Team","Contact"].map(l => (
+            {["About","Services","AI","Projects","Partners","Team","Contact"].map(l => (
               <li key={l}><Link to={`/#${l.toLowerCase()}`} style={{ fontSize: "0.82rem", color: C.mid, textDecoration: "none", fontWeight: 400 }} onMouseEnter={e=>e.target.style.color=C.dark} onMouseLeave={e=>e.target.style.color=C.mid}>{l}</Link></li>
             ))}
             <li><Link to="/start" style={{ fontSize: "0.82rem", fontWeight: 500, textDecoration: "none", padding: "0.45rem 1.1rem", background: C.green, color: C.white, fontFamily: "'DM Sans', sans-serif" }} onMouseEnter={e=>e.target.style.opacity="0.85"} onMouseLeave={e=>e.target.style.opacity="1"}>Start a project</Link></li>
@@ -106,7 +106,7 @@ function Nav() {
       </nav>
       {mobile && open && (
         <div style={{ position: "fixed", top: 60, left: 0, right: 0, zIndex: 199, background: C.bg, borderBottom: `1px solid ${C.border}`, padding: "1.5rem 1.25rem 2rem", display: "flex", flexDirection: "column" }}>
-          {["About","Services","Projects","Partners","Team","Contact"].map(l => (
+          {["About","Services","AI","Projects","Partners","Team","Contact"].map(l => (
             <Link key={l} to={`/#${l.toLowerCase()}`} onClick={go} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: C.dark, textDecoration: "none", padding: "0.9rem 0", borderBottom: `1px solid ${C.border}` }}>{l}</Link>
           ))}
           <Link to="/start" onClick={go} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", fontWeight: 600, textDecoration: "none", padding: "0.85rem 1.25rem", background: C.green, color: C.white, marginTop: "1.25rem", textAlign: "center" }}>Start a project</Link>
@@ -116,24 +116,39 @@ function Nav() {
   );
 }
 
+const heroPhoto1 = '/assets/pexels-tranmautritam-326514.jpg';
+const heroPhoto2 = '/assets/pexels-mizunokozuki-12899153.jpg';
+const aboutPhoto = '/assets/pexels-mizunokozuki-12899191.jpg';
+const processPhoto = '/assets/pexels-bibekghosh-14553707.jpg';
+
 function Hero() {
   const mobile = useMobile();
   return (
-    <section id="top" style={{ background: C.bg, padding: mobile ? "100px 1.25rem 64px" : "140px 2.5rem 100px", maxWidth: 1100, margin: "0 auto" }}>
-      <div style={{ maxWidth: 780 }}>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginBottom: "2rem", padding: "0.35rem 0.85rem", border: `1px solid ${C.border}`, borderRadius: 999 }}>
-          <span style={{ width: 7, height: 7, borderRadius: "50%", background: C.green, display: "block", flexShrink: 0 }} />
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: C.mid, letterSpacing: "0.06em" }}>Tech products &amp; custom solutions</span>
+    <section id="top" style={{ background: C.bg, padding: mobile ? "96px 1.25rem 56px" : "130px 2.5rem 90px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: mobile ? "1fr" : "1.15fr 0.85fr", gap: mobile ? "2.5rem" : "4rem", alignItems: "center" }}>
+        <div>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginBottom: "2rem", padding: "0.35rem 0.85rem", border: `1px solid ${C.border}`, borderRadius: 999 }}>
+            <span style={{ width: 7, height: 7, borderRadius: "50%", background: C.green, display: "block", flexShrink: 0, animation: "pulse 2s infinite" }} />
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: C.mid, letterSpacing: "0.06em" }}>AI-enabled software studio · Now taking projects</span>
+          </div>
+          <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "2.6rem" : "clamp(2.8rem, 5.5vw, 4.6rem)", fontWeight: 400, color: C.dark, lineHeight: 1.08, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
+            Get it Done. Badjr.<br /><span style={{ color: C.green }}>Software, AI &amp; tools<br />built to last.</span>
+          </h1>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? "1rem" : "1.1rem", lineHeight: 1.75, color: C.mid, maxWidth: 520, marginBottom: "2.25rem" }}>
+            BaDjR is an AI-forward studio that designs and builds websites, digital tools, and custom software for companies that care about quality. Engineering precision, creative instinct — and AI where it actually helps.
+          </p>
+          <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+            <Link to="/start" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "0.88rem", textDecoration: "none", padding: "0.75rem 1.6rem", background: C.dark, color: C.white }}>Start a project →</Link>
+            <Link to="/#projects" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, fontSize: "0.88rem", textDecoration: "none", padding: "0.75rem 1.6rem", border: `1px solid ${C.border}`, color: C.dark }}>See our work</Link>
+          </div>
         </div>
-        <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "2.6rem" : "clamp(2.8rem, 6vw, 5.2rem)", fontWeight: 400, color: C.dark, lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
-          Get it Done. Badjr.<br /><span style={{ color: C.green }}>Tech Solutions Made Easy.</span>
-        </h1>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? "1rem" : "1.1rem", lineHeight: 1.75, color: C.mid, maxWidth: 520, marginBottom: "2.25rem" }}>
-          BaDjR designs and builds websites, tools, and custom software for companies that care about quality. Engineering precision, creative instinct.
-        </p>
-        <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-          <Link to="/#projects" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "0.88rem", textDecoration: "none", padding: "0.7rem 1.5rem", background: C.dark, color: C.white }}>See our work</Link>
-          <Link to="/start" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, fontSize: "0.88rem", textDecoration: "none", padding: "0.7rem 1.5rem", border: `1px solid ${C.border}`, color: C.dark }}>Start a project →</Link>
+        <div style={{ position: "relative", display: mobile ? "none" : "block" }}>
+          <img src={heroPhoto1} alt="Clean workspace with code on screen" style={{ width: "100%", height: 420, objectFit: "cover", borderRadius: 10, display: "block", boxShadow: "0 20px 50px rgba(26,31,20,0.15)" }} />
+          <img src={heroPhoto2} alt="Developer at work" style={{ position: "absolute", bottom: -28, left: -40, width: 190, height: 140, objectFit: "cover", borderRadius: 8, border: `4px solid ${C.bg}`, boxShadow: "0 12px 30px rgba(26,31,20,0.2)" }} />
+          <div style={{ position: "absolute", top: 18, right: -14, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, padding: "0.6rem 0.9rem", boxShadow: "0 8px 24px rgba(26,31,20,0.12)", fontFamily: "'DM Sans', sans-serif" }}>
+            <span style={{ fontSize: "0.7rem", fontWeight: 700, color: C.green, letterSpacing: "0.12em", textTransform: "uppercase" }}>AI-Accelerated</span>
+            <p style={{ fontSize: "0.72rem", color: C.mid, marginTop: 2 }}>Ship in weeks, not months</p>
+          </div>
         </div>
       </div>
     </section>
@@ -147,9 +162,16 @@ function ProofBar() {
     <>
       <Divider />
       <div ref={ref} style={{ ...fade(v), padding: mobile ? "1.25rem" : "1.75rem 2.5rem", maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", gap: "1.5rem", flexWrap: "wrap" }}>
-        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.75rem", color: C.mid }}>Trusted by teams at</span>
-        {["Startups","Agencies","Scale-ups","Founders"].map(t => (
-          <span key={t} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: C.border, letterSpacing: "0.08em", textTransform: "uppercase" }}>{t}</span>
+        {[
+          { n: "6+", l: "Products shipped" },
+          { n: "10×", l: "Faster with AI-assisted builds" },
+          { n: "24h", l: "Response on new inquiries" },
+          { n: "100%", l: "Custom — never templated" },
+        ].map(s => (
+          <div key={s.l} style={{ display: "flex", alignItems: "baseline", gap: "0.6rem", flex: mobile ? "1 1 45%" : "1 1 auto" }}>
+            <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "1.5rem" : "1.8rem", color: C.green, lineHeight: 1 }}>{s.n}</span>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid }}>{s.l}</span>
+          </div>
         ))}
       </div>
       <Divider />
@@ -171,6 +193,7 @@ function About() {
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.8, color: C.mid }}>Like our namesake — the badger — we dig beneath the surface. We're not interested in fast, generic work. We want to build things that last.</p>
         </div>
         <div ref={r2} style={fade(v2, mobile ? 0 : 120)}>
+          <img src={aboutPhoto} alt="The team collaborating" style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 8, marginBottom: "1.5rem", display: "block" }} />
           {[{n:"5+",l:"Projects delivered"},{n:"2",l:"Expert founders"},{n:"100%",l:"Custom, innovative & well-designed"}].map(s => (
             <div key={s.n} style={{ padding: "1.5rem 0", borderTop: `1px solid ${C.border}`, display: "flex", alignItems: "baseline", gap: "1.25rem" }}>
               <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: "2.8rem", color: C.green, lineHeight: 1 }}>{s.n}</span>
@@ -187,10 +210,13 @@ function About() {
 const SERVICES = [
   { title: "Web Design & Development", body: "Custom websites built from scratch — fast, accessible, and crafted to convert. From marketing sites to complex web applications." },
   { title: "Digital Tools & SaaS",     body: "Software that solves real problems. Dashboards, automation platforms, and internal tools built to scale with your business." },
+  { title: "White-Label Products & Services", body: "Ready-to-brand platforms and services your company can offer as its own. We build it, you label it — full product quality without the build-from-zero timeline." },
   { title: "Custom Tech Solutions",    body: "Unusual challenge? We scope, design, and engineer solutions tailored precisely to your workflow and requirements." },
   { title: "Brand & UX Design",        body: "Visual identity and user experience design that makes your product feel coherent, considered, and impossible to imitate." },
   { title: "API & Integrations",       body: "We connect your tools, automate repetitive workflows, and build the infrastructure that keeps your stack running smoothly." },
-  { title: "Strategy & Consulting",    body: "Not sure where to start? We help you define the right product, choose the right stack, and build a roadmap that holds." },
+  { title: "Strategy & Consulting",    body: "Not sure where to start? We help you define the right product, choose the right stack, and find where AI APIs, AI-powered websites, and generative tools fit your business — with a roadmap that holds." },
+  { title: "AI & Automation", body: "AI APIs, AI-powered websites, generative tools, intelligent assistants, and workflow automation — practical AI built into your product or operations, not hype." },
+  { title: "AI Consulting", body: "Hands-on guidance for bringing AI into your business. We audit your workflows, identify the highest-ROI opportunities, pilot the right tools, and train your team to use them well." },
 ];
 
 function ServiceRow({ s, i, mobile }) {
@@ -200,7 +226,6 @@ function ServiceRow({ s, i, mobile }) {
     <div ref={r} style={{ ...fade(v, i*50), display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 2fr auto", alignItems: mobile ? "start" : "center", gap: mobile ? "0.4rem" : "3rem", borderBottom: `1px solid ${C.border}`, background: !mobile && hov ? C.bg : "transparent", transition: "background 0.2s, opacity 0.6s ease, transform 0.6s ease", cursor: "default", margin: mobile ? "0" : "0 -2.5rem", padding: mobile ? "1.5rem 0" : "1.5rem 2.5rem" }} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
       <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: C.dark }}>{s.title}</h3>
       <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.7, color: C.mid, marginTop: mobile ? "0.25rem" : 0 }}>{s.body}</p>
-      {!mobile && <span style={{ fontSize: "1rem", color: hov ? C.green : C.border, transition: "color 0.2s" }}>→</span>}
     </div>
   );
 }
@@ -213,7 +238,7 @@ function Services() {
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div ref={hr} style={{ ...fade(hv), marginBottom: "2.5rem" }}>
           <Label>Services</Label>
-          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>What we build</h2>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>What we do</h2>
         </div>
         <Divider />
         {SERVICES.map((s,i) => <ServiceRow key={s.title} s={s} i={i} mobile={mobile} />)}
@@ -222,13 +247,95 @@ function Services() {
   );
 }
 
+const AI_CARDS = [
+  { title: "AI-accelerated delivery", body: "We build with AI-assisted engineering workflows, so your project ships in weeks instead of months — without cutting corners on quality or review." },
+  { title: "AI features in your product", body: "AI APIs, AI-powered websites, and generative tools — chat assistants, smart search, document understanding, content generation. We design and integrate AI features your users actually want." },
+  { title: "Workflow automation", body: "We identify the repetitive work eating your team's time and replace it with intelligent automations that run quietly in the background." },
+  { title: "AI strategy & readiness", body: "Not sure where AI fits your business? We audit your workflows, find the highest-ROI opportunities, and build a practical adoption roadmap." },
+];
+
+function AISection() {
+  const mobile = useMobile();
+  const [hr,hv] = useFade();
+  return (
+    <section id="ai" style={{ background: C.dark, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div ref={hr} style={{ ...fade(hv), marginBottom: "3rem", maxWidth: 640 }}>
+          <Label color={C.amber}>AI-Native</Label>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.white, letterSpacing: "-0.01em", lineHeight: 1.2 }}>
+            An AI-friendly studio,<br />from tooling to product.
+          </h2>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.75, color: "#a8b09c", marginTop: "1rem" }}>
+            We don't just build software — we build it the modern way, and we bring AI into your business where it creates real leverage.
+          </p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)", gap: "1.25rem" }}>
+          {AI_CARDS.map((c, i) => <AICard key={c.title} c={c} i={i} />)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AICard({ c, i }) {
+  const [r,v] = useFade();
+  const [hov,setHov] = useState(false);
+  return (
+    <div ref={r} style={{ ...fade(v, i*70), padding: "1.75rem", border: `1px solid ${hov ? C.amber : "rgba(255,255,255,0.14)"}`, borderRadius: 8, transition: "border-color 0.25s, opacity 0.6s ease, transform 0.6s ease" }} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
+      <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.1rem", color: C.amber }}>{String(i+1).padStart(2,"0")}</span>
+      <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: C.white, margin: "0.75rem 0 0.5rem" }}>{c.title}</h3>
+      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.7, color: "#a8b09c" }}>{c.body}</p>
+    </div>
+  );
+}
+
+const PROCESS = [
+  { step: "01", title: "Discover", body: "A focused discovery call and workflow audit. We learn your business, your users, and what success looks like." },
+  { step: "02", title: "Design", body: "Wireframes and visual design you react to early and often — no big reveals, no surprises." },
+  { step: "03", title: "Build", body: "AI-accelerated engineering with human review on every line. Weekly demos so you always see progress." },
+  { step: "04", title: "Ship & support", body: "We launch, monitor, and stay on. Your product keeps improving after day one." },
+];
+
+function Process() {
+  const mobile = useMobile();
+  const [hr,hv] = useFade();
+  return (
+    <section id="process" style={{ background: C.bg, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: mobile ? "2.5rem" : "5rem", alignItems: "center" }}>
+          <div>
+            <div ref={hr} style={{ ...fade(hv), marginBottom: "2rem" }}>
+              <Label>How we work</Label>
+              <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>A process that holds.</h2>
+            </div>
+            {PROCESS.map((p, i) => <ProcessRow key={p.step} p={p} i={i} />)}
+          </div>
+          {!mobile && <img src={processPhoto} alt="Building software with care" style={{ width: "100%", height: 520, objectFit: "cover", borderRadius: 10, display: "block" }} />}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProcessRow({ p, i }) {
+  const [r,v] = useFade();
+  return (
+    <div ref={r} style={{ ...fade(v, i*60), display: "flex", gap: "1.5rem", padding: "1.25rem 0", borderTop: `1px solid ${C.border}` }}>
+      <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.3rem", color: C.green, lineHeight: 1.3, flexShrink: 0 }}>{p.step}</span>
+      <div>
+        <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", fontWeight: 600, color: C.dark, marginBottom: "0.3rem" }}>{p.title}</h3>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.86rem", lineHeight: 1.7, color: C.mid }}>{p.body}</p>
+      </div>
+    </div>
+  );
+}
+
 const SELECTED_PROJECTS = [
-  { tag: "Membership Community", title: "The Wren Club", body: "An exclusive membership community for women entrepreneurs with established businesses. Virtual meetups, in-person events, and a vetted network built for real collaboration — not just connections.", url: "https://www.thewrenclub.com/" },
   { tag: "Conference Management", title: "PanelList", body: "End-to-end conference management platform. Speaker submissions, scheduling, and attendee coordination — all in one focused, easy-to-use tool.", url: "/start" },
   { tag: "FF&E Procurement", title: "Design Domain", body: "Full-service furniture procurement and design for real estate projects. Sourcing through installation, with 20–40% savings over traditional FF&E firms.", url: "https://www.designdomainllc.com/" },
-  { tag: "Benefits Platform", title: "Perk", body: "A modern benefits management platform that helps organizations provide meaningful perks to every team — simple to set up, easy to use.", url: "https://perkapp.vercel.app/" },
-  { tag: "Project Planning", title: "Dules", body: "Project planning and Gantt chart tool built for clarity. Visualize timelines, coordinate tasks, and keep your team aligned — without the bloat.", url: "https://dules.vercel.app/" },
-  { tag: "Education Platform", title: "DJC Studio", body: "A learning platform from DakJen Creative — masterclasses, focused 101s, and 1:1 Studio Sessions for small business owners who want to get stable, professional, and moving. Public storefront paired with a logged-in experience that tracks progress through every course.", url: "https://djc-studio.vercel.app/the-studio" },
+  { tag: "Education & Community", title: "GroundUp", body: "Affordable housing development courses and community by Dr. Gina Merritt — built on 30+ years and $600M+ of real deals. Course platform, community, and direct access for underrepresented developers.", url: "https://community.drginamerritt.net" },
+  { tag: "Education Platform", title: "DJC Studio", body: "A learning platform from DakJen Creative — masterclasses, focused 101s, and 1:1 Studio Sessions for small business owners who want to get stable, professional, and moving. Public storefront paired with a logged-in experience that tracks progress through every course.", url: "https://studio.dakjencreative.com" },
+  { tag: "Membership Community", title: "The Wren Club", body: "An exclusive membership community for women entrepreneurs with established businesses. Virtual meetups, in-person events, and a vetted network built for real collaboration — not just connections.", url: "https://www.thewrenclub.com/" },
 ];
 
 const EXAMPLE_PROJECTS = [
@@ -505,12 +612,28 @@ function Footer() {
         <Logo size={22} />
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.border }}>© {new Date().getFullYear()} BaDjR Tech. All rights reserved.</p>
         <ul style={{ listStyle: "none", display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
-          {["About","Services","Projects","Partners","Team","Contact"].map(l => (
+          {["About","Services","AI","Projects","Partners","Team","Contact"].map(l => (
             <li key={l}><Link to={`/#${l.toLowerCase()}`} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, textDecoration: "none" }}>{l}</Link></li>
           ))}
         </ul>
       </footer>
     </>
+  );
+}
+
+function CTABand() {
+  const mobile = useMobile();
+  const [r,v] = useFade();
+  return (
+    <section style={{ background: C.green, padding: mobile ? "56px 1.25rem" : "80px 2.5rem" }}>
+      <div ref={r} style={{ ...fade(v), maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1.5rem" }}>
+        <div>
+          <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.6rem, 3vw, 2.4rem)", fontWeight: 400, color: C.white, letterSpacing: "-0.01em" }}>Ready to build something that lasts?</h2>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", color: "rgba(255,255,255,0.75)", marginTop: "0.5rem" }}>Tell us what you're imagining — we'll reply within 24 hours.</p>
+        </div>
+        <Link to="/start" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.9rem", textDecoration: "none", padding: "0.85rem 1.8rem", background: C.white, color: C.green, borderRadius: 4, flexShrink: 0 }}>Start a project →</Link>
+      </div>
+    </section>
   );
 }
 
@@ -521,10 +644,13 @@ function Home() {
       <ProofBar />
       <About />
       <Services />
+      <AISection />
+      <Process />
       <Projects />
       <Partners />
       <Team />
       <Contact />
+      <CTABand />
     </>
   );
 }
@@ -670,6 +796,7 @@ export default function App() {
         select option{color:#1a1f14;}
         input,textarea,select{-webkit-appearance:none;}
         *{-webkit-tap-highlight-color:transparent;}
+        @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
       `}</style>
       <Nav />
       <Routes>
