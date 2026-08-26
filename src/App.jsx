@@ -266,7 +266,7 @@ function AISection() {
             AI-accelerated,<br />technically backed.
           </h2>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.75, color: "#a8b09c", marginTop: "1rem" }}>
-            We use AI to move fast — but every line is reviewed, confirmed, and secured by a formally trained engineer. Speed from AI, quality from real computer science.
+            We use AI to move fast — but every line is reviewed, confirmed, and secured by a formally trained engineer. Speed from AI, quality from real computer science — so we stand behind every product we ship.
           </p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)", gap: "1.25rem" }}>
@@ -496,9 +496,9 @@ const TEAM = [
 function TeamMember({ f, i, mobile, avatarColor }) {
   const [r,v] = useFade();
   return (
-    <div ref={r} style={{ ...fade(v, i*80), display: "grid", gridTemplateColumns: mobile ? "1fr" : "200px 180px 1fr", alignItems: "start", gap: mobile ? "0.5rem" : "3rem", padding: mobile ? "1.75rem 0" : "2.25rem 0", borderBottom: `1px solid ${C.border}` }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
-        <img src={f.photo} alt={f.name} style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover", flexShrink: 0, background: avatarColor }} />
+    <div ref={r} style={{ ...fade(v, i*80), display: "grid", gridTemplateColumns: mobile ? "1fr" : "260px 180px 1fr", alignItems: "start", gap: mobile ? "0.5rem" : "3rem", padding: mobile ? "1.75rem 0" : "2.25rem 0", borderBottom: `1px solid ${C.border}` }}>
+      <div style={{ display: "flex", flexDirection: mobile ? "row" : "column", alignItems: mobile ? "center" : "flex-start", gap: "0.85rem" }}>
+        <img src={f.photo} alt={f.name} style={{ width: mobile ? 120 : 240, height: mobile ? 120 : 240, borderRadius: "50%", objectFit: "cover", flexShrink: 0, background: avatarColor }} />
         <div>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", fontWeight: 600, color: C.dark }}>{f.name}</p>
           {mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, marginTop: "0.1rem" }}>{f.role}</p>}
