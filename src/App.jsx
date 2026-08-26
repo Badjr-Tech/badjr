@@ -135,7 +135,7 @@ function Hero() {
             Get it Done. Badjr.<br /><span style={{ color: C.green }}>Software, AI &amp; tools<br />built to last.</span>
           </h1>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? "1rem" : "1.1rem", lineHeight: 1.75, color: C.mid, maxWidth: 520, marginBottom: "2.25rem" }}>
-            BaDjR is an AI-forward studio that designs and builds websites, digital tools, and custom software for companies that care about quality. Engineering precision, creative instinct — and AI where it actually helps.
+            BaDjR is a small, fast-moving studio that makes beautiful software — websites, digital tools, and custom builds delivered quickly and efficiently, without agency bloat. Engineering precision, creative instinct, and AI where it actually helps.
           </p>
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
             <Link to="/start" style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "0.88rem", textDecoration: "none", padding: "0.75rem 1.6rem", background: C.dark, color: C.white }}>Start a project →</Link>
