@@ -147,7 +147,7 @@ function Hero() {
           <img src={heroPhoto2} alt="Developer at work" style={{ position: "absolute", bottom: -28, left: -40, width: 190, height: 140, objectFit: "cover", borderRadius: 8, border: `4px solid ${C.bg}`, boxShadow: "0 12px 30px rgba(26,31,20,0.2)" }} />
           <div style={{ position: "absolute", top: 18, right: -14, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, padding: "0.6rem 0.9rem", boxShadow: "0 8px 24px rgba(26,31,20,0.12)", fontFamily: "'DM Sans', sans-serif" }}>
             <span style={{ fontSize: "0.7rem", fontWeight: 700, color: C.green, letterSpacing: "0.12em", textTransform: "uppercase" }}>AI-Accelerated</span>
-            <p style={{ fontSize: "0.72rem", color: C.mid, marginTop: 2 }}>Ship in weeks, not months</p>
+            <p style={{ fontSize: "0.72rem", color: C.mid, marginTop: 2 }}>Technically backed</p>
           </div>
         </div>
       </div>
@@ -263,10 +263,10 @@ function AISection() {
         <div ref={hr} style={{ ...fade(hv), marginBottom: "3rem", maxWidth: 640 }}>
           <Label color={C.amber}>AI-Native</Label>
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.white, letterSpacing: "-0.01em", lineHeight: 1.2 }}>
-            An AI-friendly studio,<br />from tooling to product.
+            AI-accelerated,<br />technically backed.
           </h2>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.75, color: "#a8b09c", marginTop: "1rem" }}>
-            We don't just build software — we build it the modern way, and we bring AI into your business where it creates real leverage.
+            We use AI to move fast — but every line is reviewed, confirmed, and secured by a formally trained engineer. Speed from AI, quality from real computer science.
           </p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)", gap: "1.25rem" }}>
