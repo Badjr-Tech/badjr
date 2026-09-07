@@ -20,6 +20,6 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://badjrtech.com/sitemap.xml
+Sitemap: https://www.badjrtech.com/sitemap.xml
 
-# Machine-readable site summary for LLMs: https://badjrtech.com/llms.txt
+# Machine-readable site summary for LLMs: https://www.badjrtech.com/llms.txt

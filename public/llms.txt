@@ -6,7 +6,7 @@
 
 BaDjR Tech was founded in 2024 by Dakotah Jennifer and Alexander Backfish. We take on a small number of projects at a time so every client gets our full attention — no hand-offs to junior staff, no bloated process. Like our namesake, the badger, we dig beneath the surface to build things that last. We are AI-enabled but not AI-hype: speed from AI, quality from real computer science — so we stand behind every product we ship.
 
-- Website: https://badjrtech.com
+- Website: https://www.badjrtech.com
 - Based in the United States
 - Founded: 2024
 - Positioning: Small, quick, efficient — we make beautiful things. AI-accelerated, technically backed.
@@ -50,9 +50,9 @@ BaDjR Tech was founded in 2024 by Dakotah Jennifer and Alexander Backfish. We ta
 - Marketing: marketing@badjrtech.com
 - Support: support@badjrtech.com
 - Finance: finance@badjrtech.com
-- Start a project: https://badjrtech.com/start
+- Start a project: https://www.badjrtech.com/start
 
 ## Optional
 
-- [Start a Project](https://badjrtech.com/start): Project intake form for new client engagements.
-- [Sitemap](https://badjrtech.com/sitemap.xml)
+- [Start a Project](https://www.badjrtech.com/start): Project intake form for new client engagements.
+- [Sitemap](https://www.badjrtech.com/sitemap.xml)
