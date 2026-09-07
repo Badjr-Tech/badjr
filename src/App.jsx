@@ -788,7 +788,6 @@ export default function App() {
     <>
       <ScrollToTop />
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap');
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
         html{scroll-behavior:smooth;}
         body{background:#fffcf0;overflow-x:hidden;}
