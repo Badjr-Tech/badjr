@@ -248,10 +248,14 @@ function Services() {
 }
 
 const AI_CARDS = [
-  { title: "AI-accelerated delivery", body: "We build with AI-assisted engineering workflows, so your project ships in weeks instead of months — without cutting corners on quality or review." },
-  { title: "AI features in your product", body: "AI APIs, AI-powered websites, and generative tools — chat assistants, smart search, document understanding, content generation. We design and integrate AI features your users actually want." },
-  { title: "Workflow automation", body: "We identify the repetitive work eating your team's time and replace it with intelligent automations that run quietly in the background." },
-  { title: "AI strategy & readiness", body: "Not sure where AI fits your business? We audit your workflows, find the highest-ROI opportunities, and build a practical adoption roadmap." },
+  { title: "AI-accelerated delivery", body: "We build with AI-assisted engineering workflows, so your project ships in weeks instead of months — without cutting corners on quality or review.",
+    more: "Our process pairs AI coding tools with a formally trained engineer who reviews, confirms, and secures every line before it ships. You get the speed of AI generation with the rigor of real computer science — architecture decisions, security checks, and deployment pipelines are always human-owned. The result: timelines measured in weeks, quality measured against production standards." },
+  { title: "AI features in your product", body: "AI APIs, AI-powered websites, and generative tools — chat assistants, smart search, document understanding, content generation. We design and integrate AI features your users actually want.",
+    more: "We work with the leading model providers (Anthropic, OpenAI, and open-source) to build features like conversational assistants trained on your docs, semantic search that understands intent, automated document processing, and generative content tools with your brand voice built in. Every integration is scoped for cost predictability, so AI features stay an asset — not a runaway bill." },
+  { title: "Workflow automation", body: "We identify the repetitive work eating your team's time and replace it with intelligent automations that run quietly in the background.",
+    more: "Think intake forms that route and respond themselves, reports that compile overnight, data that syncs between your CRM, spreadsheets, and inbox without anyone touching it. We map your team's actual workflows, find the hours being lost, and build automations with human checkpoints where judgment matters — so nothing important runs on autopilot that shouldn't." },
+  { title: "AI strategy & readiness", body: "Not sure where AI fits your business? We audit your workflows, find the highest-ROI opportunities, and build a practical adoption roadmap.",
+    more: "Our AI consulting engagements start with a workflow audit: where your team spends time, what tooling you already have, and where AI genuinely pays for itself versus where it's hype. You leave with a prioritized roadmap, tool recommendations with real cost estimates, pilot projects scoped and ready, and training so your team actually adopts what gets built." },
 ];
 
 function AISection() {
@@ -279,12 +283,21 @@ function AISection() {
 
 function AICard({ c, i }) {
   const [r,v] = useFade();
+  const [open,setOpen] = useState(false);
   const [hov,setHov] = useState(false);
   return (
-    <div ref={r} style={{ ...fade(v, i*70), padding: "1.75rem", border: `1px solid ${hov ? C.amber : "rgba(255,255,255,0.14)"}`, borderRadius: 8, transition: "border-color 0.25s, opacity 0.6s ease, transform 0.6s ease" }} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
-      <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.1rem", color: C.amber }}>{String(i+1).padStart(2,"0")}</span>
+    <div ref={r} onClick={()=>setOpen(o=>!o)} role="button" aria-expanded={open} tabIndex={0} onKeyDown={e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); setOpen(o=>!o);} }} style={{ ...fade(v, i*70), padding: "1.75rem", border: `1px solid ${open || hov ? C.amber : "rgba(255,255,255,0.14)"}`, borderRadius: 8, cursor: "pointer", transition: "border-color 0.25s, opacity 0.6s ease, transform 0.6s ease" }} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: "1.1rem", color: C.amber }}>{String(i+1).padStart(2,"0")}</span>
+        <span aria-hidden="true" style={{ color: open || hov ? C.amber : "#a8b09c", fontSize: "1.1rem", transform: open ? "rotate(45deg)" : "rotate(0deg)", transition: "transform 0.25s, color 0.25s", lineHeight: 1 }}>+</span>
+      </div>
       <h3 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: C.white, margin: "0.75rem 0 0.5rem" }}>{c.title}</h3>
       <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.7, color: "#a8b09c" }}>{c.body}</p>
+      <div style={{ display: "grid", gridTemplateRows: open ? "1fr" : "0fr", transition: "grid-template-rows 0.35s ease" }}>
+        <div style={{ overflow: "hidden" }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.7, color: "#cbd3bd", paddingTop: "0.85rem", marginTop: "0.85rem", borderTop: "1px solid rgba(255,255,255,0.12)" }}>{c.more}</p>
+        </div>
+      </div>
     </div>
   );
 }
