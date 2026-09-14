@@ -119,7 +119,7 @@ function Nav() {
 const heroPhoto1 = '/assets/pexels-tranmautritam-326514.jpg';
 const heroPhoto2 = '/assets/pexels-mizunokozuki-12899153.jpg';
 const aboutPhoto = '/assets/pexels-mizunokozuki-12899191.jpg';
-const teamPhoto = '/assets/team-founders.jpg';
+const teamPhoto = '/assets/team-founders-2.jpg';
 const processPhoto = '/assets/pexels-bibekghosh-14553707.jpg';
 
 function Hero() {
