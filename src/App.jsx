@@ -55,6 +55,35 @@ function Label({ children, color = C.green }) {
   return <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 600, color, marginBottom: "1rem" }}>{children}</p>;
 }
 
+const PAGE_META = {
+  "/":        { title: "BaDjR Tech — Custom Software, Web Design & AI-Accelerated Development", desc: "BaDjR Tech is a small, fast-moving software studio building beautiful portals, platforms, custom websites, and AI-powered tools. AI-accelerated, technically backed." },
+  "/start":   { title: "Start a Project — BaDjR Tech", desc: "Tell us about your vision. Share your project details and BaDjR will reach out within 24 hours to set up a discovery call." },
+  "/privacy": { title: "Privacy Policy — BaDjR Tech", desc: "How BaDjR Tech collects, uses, and protects your information." },
+  "/terms":   { title: "Terms of Service — BaDjR Tech", desc: "The terms that govern use of the BaDjR Tech website and services." },
+};
+
+function PageMeta() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const meta = PAGE_META[pathname] || { title: "Page Not Found — BaDjR Tech", desc: "This page doesn't exist at BaDjR Tech." };
+    document.title = meta.title;
+    const tag = document.querySelector('meta[name="description"]');
+    if (tag) tag.setAttribute("content", meta.desc);
+  }, [pathname]);
+  return null;
+}
+
+function StickyMobileCTA() {
+  const mobile = useMobile();
+  const { pathname } = useLocation();
+  if (!mobile || pathname === "/start") return null;
+  return (
+    <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 150, padding: "0.6rem 1.25rem calc(0.6rem + env(safe-area-inset-bottom))", background: "rgba(255,252,240,0.96)", backdropFilter: "blur(10px)", borderTop: `1px solid ${C.border}` }}>
+      <Link to="/start" style={{ display: "block", textAlign: "center", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "0.92rem", textDecoration: "none", padding: "0.8rem", background: C.green, color: C.white, borderRadius: 6 }}>Start a project →</Link>
+    </div>
+  );
+}
+
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
@@ -634,7 +663,9 @@ function Footer() {
       <Divider />
       <footer style={{ background: C.bg, padding: mobile ? "1.5rem 1.25rem" : "1.75rem 2.5rem", display: "flex", alignItems: mobile ? "flex-start" : "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", flexDirection: mobile ? "column" : "row" }}>
         <Logo size={22} />
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.border }}>© {new Date().getFullYear()} BaDjR Tech. All rights reserved.</p>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.border }}>
+          © {new Date().getFullYear()} BaDjR Tech. All rights reserved. · <Link to="/privacy" style={{ color: C.mid, textDecoration: "none" }}>Privacy</Link> · <Link to="/terms" style={{ color: C.mid, textDecoration: "none" }}>Terms</Link>
+        </p>
         <ul style={{ listStyle: "none", display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
           {["About","Services","AI","Projects","Partners","Team","Contact"].map(l => (
             <li key={l}><Link to={`/#${l.toLowerCase()}`} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, textDecoration: "none" }}>{l}</Link></li>
@@ -642,6 +673,51 @@ function Footer() {
         </ul>
       </footer>
     </>
+  );
+}
+
+const LEGAL = {
+  privacy: {
+    title: "Privacy Policy",
+    updated: "September 14, 2026",
+    sections: [
+      ["Information we collect", "When you submit our project inquiry form, we collect the information you provide: your name, email address, and any optional details (phone, company, project description). We also use Vercel Analytics, a cookieless, privacy-friendly analytics tool that records anonymized page views — it does not use cookies, does not track you across sites, and does not collect personal information."],
+      ["How we use it", "We use inquiry information solely to respond to your request and discuss your project. We do not sell, rent, or share your information with third parties for marketing purposes."],
+      ["Where it's stored", "Form submissions are stored in our private business records (Google Workspace). Our website is hosted on Vercel. Both providers maintain industry-standard security practices."],
+      ["Your choices", "You may request that we correct or delete your information at any time by emailing business@badjrtech.com. We'll honor your request promptly."],
+      ["Contact", "Questions about this policy? Email business@badjrtech.com."],
+    ],
+  },
+  terms: {
+    title: "Terms of Service",
+    updated: "September 14, 2026",
+    sections: [
+      ["Use of this site", "This website is provided by BaDjR Tech for informational purposes. You may browse and share its content for lawful purposes. All content, branding, and imagery are the property of BaDjR Tech and may not be reproduced without permission."],
+      ["Project inquiries", "Submitting the project form does not create a contract or engagement. Client engagements are governed by a separate written agreement covering scope, pricing, and deliverables."],
+      ["Third-party links", "Our site links to client projects and external sites we don't control. We're not responsible for their content or practices."],
+      ["No warranties", "This site is provided \"as is\" without warranties of any kind. We may update or change the site at any time."],
+      ["Contact", "Questions about these terms? Email business@badjrtech.com."],
+    ],
+  },
+};
+
+function LegalPage({ kind }) {
+  const mobile = useMobile();
+  const doc = LEGAL[kind];
+  return (
+    <section style={{ background: C.bg, padding: mobile ? "110px 1.25rem 64px" : "150px 2.5rem 100px", minHeight: "80vh" }}>
+      <div style={{ maxWidth: 720, margin: "0 auto" }}>
+        <Label>Legal</Label>
+        <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>{doc.title}</h1>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: C.mid, marginBottom: "2.5rem" }}>Last updated {doc.updated}</p>
+        {doc.sections.map(([h, body]) => (
+          <div key={h} style={{ marginBottom: "1.75rem" }}>
+            <h2 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 600, color: C.dark, marginBottom: "0.5rem" }}>{h}</h2>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", lineHeight: 1.8, color: C.mid }}>{body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -687,6 +763,7 @@ function StartProjectPage() {
   const mobile = useMobile();
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const [form, setForm] = useState({
     name: "", email: "", phone: "", company: "",
     service: "", budget: "", timeline: "", message: ""
@@ -704,9 +781,11 @@ function StartProjectPage() {
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(form),
       });
-    } catch (_) {}
+      setDone(true);
+    } catch (_) {
+      setSubmitError(true);
+    }
     setSubmitting(false);
-    setDone(true);
   };
 
   const inputStyle = { fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", color: C.dark, background: C.white, border: `1px solid ${C.border}`, padding: "0.8rem 1rem", outline: "none", width: "100%", borderRadius: "4px", transition: "border-color 0.15s, box-shadow 0.15s", WebkitAppearance: "none" };
@@ -799,6 +878,11 @@ function StartProjectPage() {
             <button type="submit" disabled={submitting} style={{ background: submitting ? C.mid : C.dark, color: C.white, border: "none", padding: "1rem 2rem", fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", fontWeight: 500, cursor: submitting ? "default" : "pointer", alignSelf: "flex-start", borderRadius: "4px", transition: "background 0.2s", opacity: submitting ? 0.7 : 1 }} onMouseEnter={e=>{ if(!submitting) e.target.style.background=C.green }} onMouseLeave={e=>{ if(!submitting) e.target.style.background=C.dark }}>
               {submitting ? "Submitting..." : "Submit Project Request"}
             </button>
+            {submitError && (
+              <p role="alert" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: C.error, marginTop: "-0.5rem" }}>
+                Something went wrong sending your request. Please try again, or email us directly at <a href="mailto:business@badjrtech.com" style={{ color: C.error, fontWeight: 600 }}>business@badjrtech.com</a>.
+              </p>
+            )}
           </form>
         )}
       </div>
@@ -811,6 +895,8 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <PageMeta />
+      <StickyMobileCTA />
       <style>{`
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
         html{scroll-behavior:smooth;}
@@ -825,6 +911,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/start" element={<StartProjectPage />} />
+        <Route path="/privacy" element={<LegalPage kind="privacy" />} />
+        <Route path="/terms" element={<LegalPage kind="terms" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
