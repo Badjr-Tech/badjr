@@ -574,7 +574,7 @@ function Team() {
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>The founders</h2>
         </div>
         <Divider />
-        <img src={teamPhoto} alt="BaDjR founders Dakotah Jennifer and Alexander Backfish at the Brooklyn Bridge" style={{ width: "100%", height: mobile ? 240 : 420, objectFit: "cover", borderRadius: 10, display: "block", margin: "2.5rem 0 1rem" }} />
+        <img src={teamPhoto} alt="BaDjR founders Dakotah Jennifer and Alexander Backfish at the Brooklyn Bridge, wearing BADJR sweatshirts" style={{ width: "100%", height: mobile ? 320 : 600, objectFit: "cover", objectPosition: "center bottom", borderRadius: 10, display: "block", margin: "2.5rem 0 1rem" }} />
         {TEAM.map((f,i) => <TeamMember key={f.name} f={f} i={i} mobile={mobile} avatarColor={avatarColors[i]} />)}
       </div>
     </section>
