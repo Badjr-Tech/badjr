@@ -117,8 +117,9 @@ function Nav() {
 }
 
 const heroPhoto1 = '/assets/pexels-tranmautritam-326514.jpg';
-const heroPhoto2 = '/assets/team-bridge-2.jpg';
-const aboutPhoto = '/assets/team-bridge.jpg';
+const heroPhoto2 = '/assets/pexels-mizunokozuki-12899153.jpg';
+const aboutPhoto = '/assets/pexels-mizunokozuki-12899191.jpg';
+const teamPhoto = '/assets/team-bridge.jpg';
 const processPhoto = '/assets/pexels-bibekghosh-14553707.jpg';
 
 function Hero() {
@@ -144,7 +145,7 @@ function Hero() {
         </div>
         <div style={{ position: "relative", display: mobile ? "none" : "block" }}>
           <img src={heroPhoto1} alt="Clean workspace with code on screen" style={{ width: "100%", height: 420, objectFit: "cover", borderRadius: 10, display: "block", boxShadow: "0 20px 50px rgba(26,31,20,0.15)" }} />
-          <img src={heroPhoto2} alt="BaDjR founders Dakotah Jennifer and Alexander Backfish at the Brooklyn Bridge" style={{ position: "absolute", bottom: -28, left: -40, width: 190, height: 140, objectFit: "cover", borderRadius: 8, border: `4px solid ${C.bg}`, boxShadow: "0 12px 30px rgba(26,31,20,0.2)" }} />
+          <img src={heroPhoto2} alt="Developer at work" style={{ position: "absolute", bottom: -28, left: -40, width: 190, height: 140, objectFit: "cover", borderRadius: 8, border: `4px solid ${C.bg}`, boxShadow: "0 12px 30px rgba(26,31,20,0.2)" }} />
           <div style={{ position: "absolute", top: 18, right: -14, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, padding: "0.6rem 0.9rem", boxShadow: "0 8px 24px rgba(26,31,20,0.12)", fontFamily: "'DM Sans', sans-serif" }}>
             <span style={{ fontSize: "0.7rem", fontWeight: 700, color: C.green, letterSpacing: "0.12em", textTransform: "uppercase" }}>AI-Accelerated</span>
             <p style={{ fontSize: "0.72rem", color: C.mid, marginTop: 2 }}>Technically backed</p>
@@ -193,7 +194,7 @@ function About() {
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.8, color: C.mid }}>Like our namesake — the badger — we dig beneath the surface. We're not interested in fast, generic work. We want to build things that last.</p>
         </div>
         <div ref={r2} style={fade(v2, mobile ? 0 : 120)}>
-          <img src={aboutPhoto} alt="BaDjR founders in front of the Brooklyn Bridge" style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 8, marginBottom: "1.5rem", display: "block" }} />
+          <img src={aboutPhoto} alt="The team collaborating" style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 8, marginBottom: "1.5rem", display: "block" }} />
           {[{n:"5+",l:"Projects delivered"},{n:"2",l:"Expert founders"},{n:"100%",l:"Custom, innovative & well-designed"}].map(s => (
             <div key={s.n} style={{ padding: "1.5rem 0", borderTop: `1px solid ${C.border}`, display: "flex", alignItems: "baseline", gap: "1.25rem" }}>
               <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: "2.8rem", color: C.green, lineHeight: 1 }}>{s.n}</span>
@@ -535,6 +536,7 @@ function Team() {
           <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 400, color: C.dark, letterSpacing: "-0.01em" }}>The founders</h2>
         </div>
         <Divider />
+        <img src={teamPhoto} alt="BaDjR founders Dakotah Jennifer and Alexander Backfish at the Brooklyn Bridge" style={{ width: "100%", height: mobile ? 240 : 420, objectFit: "cover", borderRadius: 10, display: "block", margin: "2.5rem 0 1rem" }} />
         {TEAM.map((f,i) => <TeamMember key={f.name} f={f} i={i} mobile={mobile} avatarColor={avatarColors[i]} />)}
       </div>
     </section>
