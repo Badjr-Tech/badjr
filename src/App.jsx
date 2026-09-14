@@ -513,10 +513,10 @@ function TeamMember({ f, i, mobile, avatarColor }) {
   const [expanded, setExpanded] = useState(false);
   return (
     <div ref={r} style={{ ...fade(v, i*80), display: "grid", gridTemplateColumns: mobile ? "1fr" : "260px 180px 1fr", alignItems: "start", gap: mobile ? "0.5rem" : "3rem", padding: mobile ? "1.75rem 0" : "2.25rem 0", borderBottom: `1px solid ${C.border}` }}>
-      <div style={{ display: "flex", flexDirection: mobile ? "row" : "column", alignItems: mobile ? "center" : "flex-start", gap: "0.85rem" }}>
+      <div style={{ display: "flex", flexDirection: mobile ? "row" : "column", alignItems: "center", gap: "0.85rem", textAlign: mobile ? "left" : "center", justifySelf: mobile ? "stretch" : "center" }}>
         <img src={f.photo} alt={f.name} style={{ width: mobile ? 120 : 240, height: mobile ? 120 : 240, borderRadius: "50%", objectFit: "cover", flexShrink: 0, background: avatarColor }} />
         <div>
-          <p style={{ fontFamily: "'Caveat Brush', cursive", fontSize: mobile ? "1.5rem" : "1.7rem", fontWeight: 400, color: C.dark, lineHeight: 1.1 }}>{f.name}</p>
+          <p style={{ fontFamily: "'Caveat Brush', cursive", fontSize: mobile ? "1.5rem" : "1.7rem", fontWeight: 400, color: C.dark, lineHeight: 1.1, textTransform: "uppercase", letterSpacing: "0.03em" }}>{f.name}</p>
           {mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, marginTop: "0.25rem" }}>{f.role}</p>}
         </div>
       </div>
