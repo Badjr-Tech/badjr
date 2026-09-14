@@ -117,8 +117,8 @@ function Nav() {
 }
 
 const heroPhoto1 = '/assets/pexels-tranmautritam-326514.jpg';
-const heroPhoto2 = '/assets/pexels-mizunokozuki-12899153.jpg';
-const aboutPhoto = '/assets/pexels-mizunokozuki-12899191.jpg';
+const heroPhoto2 = '/assets/team-bridge-2.jpg';
+const aboutPhoto = '/assets/team-bridge.jpg';
 const processPhoto = '/assets/pexels-bibekghosh-14553707.jpg';
 
 function Hero() {
@@ -144,7 +144,7 @@ function Hero() {
         </div>
         <div style={{ position: "relative", display: mobile ? "none" : "block" }}>
           <img src={heroPhoto1} alt="Clean workspace with code on screen" style={{ width: "100%", height: 420, objectFit: "cover", borderRadius: 10, display: "block", boxShadow: "0 20px 50px rgba(26,31,20,0.15)" }} />
-          <img src={heroPhoto2} alt="Developer at work" style={{ position: "absolute", bottom: -28, left: -40, width: 190, height: 140, objectFit: "cover", borderRadius: 8, border: `4px solid ${C.bg}`, boxShadow: "0 12px 30px rgba(26,31,20,0.2)" }} />
+          <img src={heroPhoto2} alt="BaDjR founders Dakotah Jennifer and Alexander Backfish at the Brooklyn Bridge" style={{ position: "absolute", bottom: -28, left: -40, width: 190, height: 140, objectFit: "cover", borderRadius: 8, border: `4px solid ${C.bg}`, boxShadow: "0 12px 30px rgba(26,31,20,0.2)" }} />
           <div style={{ position: "absolute", top: 18, right: -14, background: C.white, border: `1px solid ${C.border}`, borderRadius: 8, padding: "0.6rem 0.9rem", boxShadow: "0 8px 24px rgba(26,31,20,0.12)", fontFamily: "'DM Sans', sans-serif" }}>
             <span style={{ fontSize: "0.7rem", fontWeight: 700, color: C.green, letterSpacing: "0.12em", textTransform: "uppercase" }}>AI-Accelerated</span>
             <p style={{ fontSize: "0.72rem", color: C.mid, marginTop: 2 }}>Technically backed</p>
@@ -193,7 +193,7 @@ function About() {
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", lineHeight: 1.8, color: C.mid }}>Like our namesake — the badger — we dig beneath the surface. We're not interested in fast, generic work. We want to build things that last.</p>
         </div>
         <div ref={r2} style={fade(v2, mobile ? 0 : 120)}>
-          <img src={aboutPhoto} alt="The team collaborating" style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 8, marginBottom: "1.5rem", display: "block" }} />
+          <img src={aboutPhoto} alt="BaDjR founders in front of the Brooklyn Bridge" style={{ width: "100%", height: 220, objectFit: "cover", borderRadius: 8, marginBottom: "1.5rem", display: "block" }} />
           {[{n:"5+",l:"Projects delivered"},{n:"2",l:"Expert founders"},{n:"100%",l:"Custom, innovative & well-designed"}].map(s => (
             <div key={s.n} style={{ padding: "1.5rem 0", borderTop: `1px solid ${C.border}`, display: "flex", alignItems: "baseline", gap: "1.25rem" }}>
               <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: "2.8rem", color: C.green, lineHeight: 1 }}>{s.n}</span>
@@ -496,13 +496,13 @@ const TEAM = [
     name: "Dakotah Jennifer",
     role: "Co-Founder & CEO",
     bio: "Dakotah Jennifer is a creative strategist and entrepreneur with a decade of experience building brands, businesses, and the systems behind them. She brings hands-on expertise across brand strategy, creative direction, lease-up marketing, fractional brand management, and data-driven content campaigns — with a strong command of turning audience insight into measurable growth. At BaDjR, Dakotah leads business operations, brand, and creative direction, and drives ideation on new services and products. She's the kind of operator who owns the full picture — from positioning to execution to performance — and thrives where strategy and craft have to meet. Beyond BaDjR, Dakotah is the founder and CEO of DakJen Creative LLC, a brand strategy and marketing studio based in New York with an office in Baltimore, and previously served as Chief Creative Officer at Northern Real Estate Urban Ventures. Her work has driven 237% LinkedIn growth for clients, 400+ inquiries in 48 hours for an affordable housing campaign, and applicant qualification rates that exceed industry averages. She holds an MFA in Creative Writing from Columbia University and a BA in English Literature, magna cum laude, from Washington University in St. Louis.",
-    photo: "/assets/dakotahj-headshot[80].png",
+    photo: "/assets/dakotah-headshot.jpg",
   },
   {
     name: "Alexander Backfish",
     role: "Co-Founder & CTO",
     bio: "Alexander Backfish is a full-stack software engineer with a track record of building production-grade platforms from the ground up. He brings hands-on expertise across Angular, React, Next.js, Java Spring Boot, NestJS, and PostgreSQL — with a strong command of serverless architecture and AWS cloud deployment. At BaDjR, Alex leads full-stack development, turning complex product visions into clean, scalable systems. He's the kind of engineer who takes ownership — from architecture decisions to deployment pipelines — and thrives in environments where the work actually matters. Beyond BaDjR, Alex is the founder of Sword in Stone, a SaaS company he built entirely solo — designing, developing, testing, and shipping the full platform himself. He holds a B.S. in Computer Science from Colorado State University Global and got his start in engineering at Purdue. He's based in Clayton, North Carolina.",
-    photo: "/assets/alex-backfish.png",
+    photo: "/assets/alex-headshot.jpg",
   },
 ];
 
