@@ -38,6 +38,7 @@ BaDjR Tech was founded in 2024 by Dakotah Jennifer and Alexander Backfish. We ta
 
 ## Selected Projects
 
+- [Merge](https://mergev1-78hi.vercel.app) — Grant-proposal collaboration platform: teams draft, review, and refine proposals together with an AI reviewer built in.
 - PanelList — End-to-end conference management platform: speaker submissions, scheduling, and attendee coordination.
 - [Design Domain](https://www.designdomainllc.com/) — FF&E procurement and design for real estate projects.
 - [GroundUp](https://community.drginamerritt.net) — Affordable housing development courses and community by Dr. Gina Merritt, built on 30+ years and $600M+ of real deals.

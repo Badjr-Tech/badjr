@@ -375,6 +375,7 @@ function ProcessRow({ p, i }) {
 }
 
 const SELECTED_PROJECTS = [
+  { tag: "Grant Collaboration", title: "Merge", body: "A grant-proposal collaboration platform. Teams draft, review, and refine proposals together — with an AI reviewer, role-based access, and invitations built in.", url: "https://mergev1-78hi.vercel.app" },
   { tag: "Conference Management", title: "PanelList", body: "End-to-end conference management platform. Speaker submissions, scheduling, and attendee coordination — all in one focused, easy-to-use tool.", url: "/start" },
   { tag: "FF&E Procurement", title: "Design Domain", body: "Full-service furniture procurement and design for real estate projects. Sourcing through installation, with 20–40% savings over traditional FF&E firms.", url: "https://www.designdomainllc.com/" },
   { tag: "Education & Community", title: "GroundUp", body: "Affordable housing development courses and community by Dr. Gina Merritt — built on 30+ years and $600M+ of real deals. Course platform, community, and direct access for underrepresented developers.", url: "https://community.drginamerritt.net" },
