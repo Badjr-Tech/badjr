@@ -18,6 +18,7 @@ BaDjR Tech was founded in 2024 by Dakotah Jennifer and Alexander Backfish. We ta
 
 ## Services
 
+- **Portals & Platforms** — Our specialty: client portals, member platforms, dashboards, and logged-in experiences — branded, secure spaces where clients actually get things done.
 - **Web Design & Development** — Custom websites built from scratch, fast, accessible, and crafted to convert. From marketing sites to complex web applications.
 - **Digital Tools & SaaS** — Software that solves real problems. Dashboards, automation platforms, and internal tools built to scale.
 - **White-Label Products & Services** — Ready-to-brand platforms and services companies can offer as their own. We build it, you label it.
