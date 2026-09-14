@@ -93,7 +93,7 @@ function Nav() {
             {["About","Services","AI","Projects","Partners","Team","Contact"].map(l => (
               <li key={l}><Link to={`/#${l.toLowerCase()}`} style={{ fontSize: "0.82rem", color: C.mid, textDecoration: "none", fontWeight: 400 }} onMouseEnter={e=>e.target.style.color=C.dark} onMouseLeave={e=>e.target.style.color=C.mid}>{l}</Link></li>
             ))}
-            <li><Link to="/start" style={{ fontSize: "0.82rem", fontWeight: 500, textDecoration: "none", padding: "0.45rem 1.1rem", background: C.green, color: C.white, fontFamily: "'DM Sans', sans-serif" }} onMouseEnter={e=>e.target.style.opacity="0.85"} onMouseLeave={e=>e.target.style.opacity="1"}>Start a project</Link></li>
+            <li><Link to="/start" style={{ fontSize: "0.82rem", fontWeight: 500, textDecoration: "none", padding: "0.45rem 1.1rem", background: C.green, color: C.white, fontFamily: "'DM Sans', sans-serif", whiteSpace: "nowrap", display: "inline-block" }} onMouseEnter={e=>e.target.style.opacity="0.85"} onMouseLeave={e=>e.target.style.opacity="1"}>Start a project</Link></li>
           </ul>
         )}
         {mobile && (
@@ -133,7 +133,7 @@ function Hero() {
             <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", color: C.mid, letterSpacing: "0.06em" }}>AI-enabled software studio · Now taking projects</span>
           </div>
           <h1 style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "2.6rem" : "clamp(2.8rem, 5.5vw, 4.6rem)", fontWeight: 400, color: C.dark, lineHeight: 1.08, letterSpacing: "-0.02em", marginBottom: "1.5rem" }}>
-            Get it Done. Badjr.<br /><span style={{ color: C.green }}>Software, AI &amp; tools<br />built to last.</span>
+            Get it Done. Badjr.<br /><span style={{ color: C.green }}>Portals, platforms &amp; tools<br />built to last.</span>
           </h1>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? "1rem" : "1.1rem", lineHeight: 1.75, color: C.mid, maxWidth: 520, marginBottom: "2.25rem" }}>
             BaDjR is a small, fast-moving studio that makes beautiful software — websites, digital tools, and custom builds delivered quickly and efficiently, without agency bloat. Engineering precision, creative instinct, and AI where it actually helps.
@@ -185,7 +185,7 @@ function About() {
   const [r1,v1] = useFade();
   const [r2,v2] = useFade();
   return (
-    <section id="about" style={{ background: C.bg, padding: mobile ? "64px 1.25rem" : "100px 2.5rem", maxWidth: 1100, margin: "0 auto" }}>
+    <section id="about" style={{ background: C.bg, padding: mobile ? "48px 1.25rem" : "100px 2.5rem", maxWidth: 1100, margin: "0 auto" }}>
       <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: mobile ? "3rem" : "6rem", alignItems: "start" }}>
         <div ref={r1} style={fade(v1)}>
           <Label>About</Label>
@@ -209,6 +209,7 @@ function About() {
 }
 
 const SERVICES = [
+  { title: "Portals & Platforms", body: "Our specialty. Client portals, member platforms, dashboards, and logged-in experiences — branded, secure spaces where your clients, residents, or members actually get things done." },
   { title: "Web Design & Development", body: "Custom websites built from scratch — fast, accessible, and crafted to convert. From marketing sites to complex web applications." },
   { title: "Digital Tools & SaaS",     body: "Software that solves real problems. Dashboards, automation platforms, and internal tools built to scale with your business." },
   { title: "White-Label Products & Services", body: "Ready-to-brand platforms and services your company can offer as its own. We build it, you label it — full product quality without the build-from-zero timeline." },
@@ -235,7 +236,7 @@ function Services() {
   const mobile = useMobile();
   const [hr,hv] = useFade();
   return (
-    <section id="services" style={{ background: C.bgAlt, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+    <section id="services" style={{ background: C.bgAlt, padding: mobile ? "48px 1.25rem" : "100px 2.5rem" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div ref={hr} style={{ ...fade(hv), marginBottom: "2.5rem" }}>
           <Label>Services</Label>
@@ -263,7 +264,7 @@ function AISection() {
   const mobile = useMobile();
   const [hr,hv] = useFade();
   return (
-    <section id="ai" style={{ background: C.dark, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+    <section id="ai" style={{ background: C.dark, padding: mobile ? "48px 1.25rem" : "100px 2.5rem" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div ref={hr} style={{ ...fade(hv), marginBottom: "3rem", maxWidth: 640 }}>
           <Label color={C.amber}>AI-Native</Label>
@@ -314,7 +315,7 @@ function Process() {
   const mobile = useMobile();
   const [hr,hv] = useFade();
   return (
-    <section id="process" style={{ background: C.bg, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+    <section id="process" style={{ background: C.bg, padding: mobile ? "48px 1.25rem" : "100px 2.5rem" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: mobile ? "2.5rem" : "5rem", alignItems: "center" }}>
           <div>
@@ -442,7 +443,7 @@ function Projects() {
   const [cr,cv] = useFade();
   const [lightboxProject, setLightboxProject] = useState(null);
   return (
-    <section id="projects" style={{ background: C.bg, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+    <section id="projects" style={{ background: C.bg, padding: mobile ? "48px 1.25rem" : "100px 2.5rem" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div ref={hr} style={{ ...fade(hv), marginBottom: "2.5rem" }}>
           <Label>Work</Label>
@@ -476,7 +477,7 @@ function Partners() {
   const mobile = useMobile();
   const [hr,hv] = useFade();
   return (
-    <section id="partners" style={{ background: C.bgAlt, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+    <section id="partners" style={{ background: C.bgAlt, padding: mobile ? "48px 1.25rem" : "100px 2.5rem" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div ref={hr} style={{ ...fade(hv), marginBottom: "2.5rem" }}>
           <Label>Partners</Label>
@@ -509,17 +510,25 @@ const TEAM = [
 
 function TeamMember({ f, i, mobile, avatarColor }) {
   const [r,v] = useFade();
+  const [expanded, setExpanded] = useState(false);
   return (
     <div ref={r} style={{ ...fade(v, i*80), display: "grid", gridTemplateColumns: mobile ? "1fr" : "260px 180px 1fr", alignItems: "start", gap: mobile ? "0.5rem" : "3rem", padding: mobile ? "1.75rem 0" : "2.25rem 0", borderBottom: `1px solid ${C.border}` }}>
       <div style={{ display: "flex", flexDirection: mobile ? "row" : "column", alignItems: mobile ? "center" : "flex-start", gap: "0.85rem" }}>
         <img src={f.photo} alt={f.name} style={{ width: mobile ? 120 : 240, height: mobile ? 120 : 240, borderRadius: "50%", objectFit: "cover", flexShrink: 0, background: avatarColor }} />
         <div>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", fontWeight: 600, color: C.dark }}>{f.name}</p>
-          {mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, marginTop: "0.1rem" }}>{f.role}</p>}
+          <p style={{ fontFamily: "'Caveat Brush', cursive", fontSize: mobile ? "1.5rem" : "1.7rem", fontWeight: 400, color: C.dark, lineHeight: 1.1 }}>{f.name}</p>
+          {mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid, marginTop: "0.25rem" }}>{f.role}</p>}
         </div>
       </div>
       {!mobile && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: C.mid, paddingTop: "0.1rem" }}>{f.role}</p>}
-      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.75, color: C.mid, marginTop: mobile ? "0.5rem" : 0 }}>{f.bio}</p>
+      <div style={{ marginTop: mobile ? "0.5rem" : 0 }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.75, color: C.mid, ...(mobile && !expanded ? { display: "-webkit-box", WebkitLineClamp: 4, WebkitBoxOrient: "vertical", overflow: "hidden" } : {}) }}>{f.bio}</p>
+        {mobile && (
+          <button onClick={() => setExpanded(e => !e)} style={{ background: "none", border: "none", padding: "0.4rem 0", fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: C.green, cursor: "pointer" }}>
+            {expanded ? "Read less" : "Read more"}
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -529,7 +538,7 @@ function Team() {
   const [hr,hv] = useFade();
   const avatarColors = [C.green, C.dark];
   return (
-    <section id="team" style={{ background: C.bgAlt, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+    <section id="team" style={{ background: C.bgAlt, padding: mobile ? "48px 1.25rem" : "100px 2.5rem" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div ref={hr} style={{ ...fade(hv), marginBottom: "2.5rem" }}>
           <Label>Team</Label>
@@ -563,7 +572,7 @@ function Contact() {
   const [rr,rv] = useFade();
   const mailLink = { fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", color: C.green, textDecoration: "none", fontWeight: 500 };
   return (
-    <section id="contact" style={{ background: C.bg, padding: mobile ? "64px 1.25rem" : "100px 2.5rem" }}>
+    <section id="contact" style={{ background: C.bg, padding: mobile ? "48px 1.25rem" : "100px 2.5rem" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div ref={hr} style={{ ...fade(hv), marginBottom: "2.5rem" }}>
           <Label>Contact</Label>
