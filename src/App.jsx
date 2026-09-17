@@ -785,13 +785,22 @@ function StartProjectPage() {
     if (now - lastSubmitAt.current < 30000) return;
     lastSubmitAt.current = now;
     setSubmitting(true);
+    setSubmitError(false);
     try {
-      await fetch(SHEETS_URL, {
+      // Record in the sheet (fire-and-forget; opaque no-cors response)
+      fetch(SHEETS_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify(form),
+      }).catch(() => {});
+      // Send notification + confirmation emails; this response is authoritative
+      const r = await fetch("/api/project-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, website: honeypot }),
       });
+      if (!r.ok) throw new Error("email failed");
       setDone(true);
     } catch (_) {
       setSubmitError(true);
