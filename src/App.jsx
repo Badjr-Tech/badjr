@@ -399,7 +399,7 @@ function ProjectRow({ p, i, mobile }) {
         <h3 style={{ fontFamily: "'DM Serif Display', serif", fontSize: mobile ? "1.1rem" : "1.2rem", fontWeight: 400, color: C.dark }}>{p.title}</h3>
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", lineHeight: 1.65, color: C.mid, marginTop: "0.3rem" }}>{p.body}</p>
       </div>
-      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 500, color: hov ? C.green : C.border, textDecoration: "none", whiteSpace: "nowrap", transition: "color 0.2s" }}>Visit →</span>
+      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 500, color: hov ? C.green : C.mid, textDecoration: "none", whiteSpace: "nowrap", transition: "color 0.2s" }}>Visit →</span>
     </a>
   );
 }
@@ -664,8 +664,9 @@ function Footer() {
       <Divider />
       <footer style={{ background: C.bg, padding: mobile ? "1.5rem 1.25rem" : "1.75rem 2.5rem", display: "flex", alignItems: mobile ? "flex-start" : "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", flexDirection: mobile ? "column" : "row" }}>
         <Logo size={22} />
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.border }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid }}>
           © {new Date().getFullYear()} BaDjR Tech. All rights reserved. · <Link to="/privacy" style={{ color: C.mid, textDecoration: "none" }}>Privacy</Link> · <Link to="/terms" style={{ color: C.mid, textDecoration: "none" }}>Terms</Link>
+          <br /><span style={{ fontSize: "0.72rem" }}>This site uses cookieless <a href="https://vercel.com/analytics" target="_blank" rel="noopener noreferrer" style={{ color: C.mid }}>Vercel Analytics</a> — no tracking cookies, nothing to accept.</span>
         </p>
         <ul style={{ listStyle: "none", display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
           {["About","Services","AI","Projects","Partners","Team","Contact"].map(l => (
@@ -765,6 +766,9 @@ function StartProjectPage() {
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const mountedAt = useRef(Date.now());
+  const lastSubmitAt = useRef(0);
   const [form, setForm] = useState({
     name: "", email: "", phone: "", company: "",
     service: "", budget: "", timeline: "", message: ""
@@ -774,6 +778,12 @@ function StartProjectPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const now = Date.now();
+    // Bot heuristics: hidden field filled, or submitted inhumanly fast — pretend success, send nothing
+    if (honeypot || now - mountedAt.current < 1500) { setDone(true); return; }
+    // Client-side cooldown: the backend is a third-party endpoint we can't rate-limit server-side
+    if (now - lastSubmitAt.current < 30000) return;
+    lastSubmitAt.current = now;
     setSubmitting(true);
     try {
       await fetch(SHEETS_URL, {
@@ -817,6 +827,7 @@ function StartProjectPage() {
         ) : (
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem", background: C.white, padding: mobile ? "2rem 1.5rem" : "3rem", border: `1px solid ${C.border}`, borderRadius: "8px" }}>
             
+            <input type="text" name="website" value={honeypot} onChange={e=>setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px", height: 0, width: 0, opacity: 0 }} />
             <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: "1.5rem" }}>
               <div>
                 <label style={labelStyle}>Full Name *</label>
