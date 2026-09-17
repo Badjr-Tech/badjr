@@ -663,7 +663,7 @@ function Footer() {
     <>
       <Divider />
       <footer style={{ background: C.bg, padding: mobile ? "1.5rem 1.25rem" : "1.75rem 2.5rem", display: "flex", alignItems: mobile ? "flex-start" : "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", flexDirection: mobile ? "column" : "row" }}>
-        <Logo size={22} />
+        <Logo size={64} />
         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: C.mid }}>
           © {new Date().getFullYear()} BaDjR Tech. All rights reserved. · <Link to="/privacy" style={{ color: C.mid, textDecoration: "none" }}>Privacy</Link> · <Link to="/terms" style={{ color: C.mid, textDecoration: "none" }}>Terms</Link>
           <br /><span style={{ fontSize: "0.72rem" }}>This site uses cookieless <a href="https://vercel.com/analytics" target="_blank" rel="noopener noreferrer" style={{ color: C.mid }}>Vercel Analytics</a> — no tracking cookies, nothing to accept.</span>
