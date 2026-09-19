@@ -51,7 +51,11 @@ export default async function handler(req, res) {
   // Notification to BaDjR — must succeed for the request to count as delivered
   const notify = await send({
     sender: SENDER,
-    to: [{ email: "business@badjrtech.com", name: "BaDjR Tech" }],
+    to: [
+      { email: "business@badjrtech.com", name: "BaDjR Tech" },
+      { email: "dakotah@badjrtech.com", name: "Dakotah Jennifer" },
+      { email: "alexander@badjrtech.com", name: "Alexander Backfish" },
+    ],
     replyTo: { email, name },
     subject: `New project request: ${name}${b.company ? ` (${clean(b.company, 200)})` : ""}`,
     textContent: details,
